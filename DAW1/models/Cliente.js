@@ -1,5 +1,4 @@
-const db = require('../config/conexao');
-
+import conexao from '../config/conexao.js';
 const Cliente = {
     create: (dados, callback) => {
         const sql = 'INSERT INTO cliente (nome, cpf, telefone) VALUES (?, ?, ?)';
