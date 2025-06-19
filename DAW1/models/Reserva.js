@@ -1,4 +1,4 @@
-const db = require('../config/conexao');
+import conexao from '../config/conexao.js';
 
 const Reserva = {
     create: (dados, callback) => {
