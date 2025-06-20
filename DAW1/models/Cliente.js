@@ -1,6 +1,6 @@
 import conexao from '../config/conexao.js';
 
-const Cliente = new conexao.Schema({
+const clienteSchema = new conexao.Schema({
     nome: {
         type: String,
         required: true,
