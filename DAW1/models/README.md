@@ -1,1 +1,1 @@
-como que exclui isso?
+
