@@ -11,6 +11,6 @@ const servicoSchema = new conexao.Schema({
     }
 });
 
-const Servico = conexao.model("Serviço", servicoSchema);
+const Servico = conexao.model("Servico", servicoSchema);
 
 export default Servico;
