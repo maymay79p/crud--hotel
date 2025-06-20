@@ -1,9 +1,37 @@
 import conexao from '../config/conexao.js';
-const Cliente = {
-    create: (dados, callback) => {
-        const sql = 'INSERT INTO cliente (nome, cpf, telefone) VALUES (?, ?, ?)';
-        db.query(sql, [dados.nome, dados.cpf, dados.telefone], callback);
-    }
-};
 
-module.exports = Cliente;
+const Cliente = new conexao.Schema({
+    nome: {
+        type: String,
+        required: true,
+    },
+    dataNascimento: { 
+        type: Date,
+        required: true,
+    },
+    endereco: {
+        type: String,
+        required: true,
+    },
+    telefone: {
+        type: String,
+        required: true,
+    },
+    cpf: {
+        type: String,
+        required: true,
+    },
+    senha: {
+        type: String,
+        required: true,
+    },
+    dataCadastro: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+const Cliente = conexao.model("Cliente", ClienteSchema);
+
+export default Cliente;
+
