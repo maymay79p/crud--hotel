@@ -1,20 +1,16 @@
 import conexao from "../config/conexao.js";
 
-const contratoSchema = new conexao.Schema({
-    data_inicio: {
-        type: Date,
+const tipquartoSchema = new conexao.Schema({
+    nome: {
+        type: String,
         required: true,
     },
-    data_fim: {
-        type: Date,
-        required: true,
-    },
-    valor: {
-        type: Number,  
+    descricao: {
+        type: String,
         required: true,
     }
 });
 
-const Contrato = conexao.model("Contrato", contratoSchema);
+const Tipquarto = conexao.model("Tipquarto", tipquartoSchema);
 
-export default Contrato;
+export default Tipquarto;
