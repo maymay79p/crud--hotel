@@ -8,14 +8,14 @@
     <title>Hotel Alpinia Palace</title>
 
     <style>
-        /* Paleta */
+        /* 🎨 Paleta Outono */
         :root {
-            --cowhide: #3f2411;
-            --spiced-wine: #6e3712e7;
-            --toasted-caramel: #684c2f;
-            --olive-harvest: #a3ac70;
-            --golden-batter: #f0eade;
-            --white: #ffffff;
+            --marrom-escuro: #4B2E2A;
+            --marrom-claro: #A05A2C;
+            --laranja-outono: #C97C48;
+            --dourado-folha: #E8C48C;
+            --bege-fundo: #FAF4EF;
+            --verde-oliva: #8A8D5A;
         }
 
         * {
@@ -25,34 +25,24 @@
         }
 
         body {
+            background-color: var(--bege-fundo);
             font-family: 'Georgia', serif;
-            background-color: var(--golden-batter);
-            color: var(--cowhide);
+            color: var(--marrom-escuro);
         }
 
-        /* ---------- CABEÇALHO ---------- */
+        /* 🌄 Cabeçalho */
         header {
-            background: url('imagem.jpg') no-repeat center/cover;
-            padding: 60px 20px 100px;
+            background: linear-gradient(rgba(75,46,42,0.7), rgba(75,46,42,0.7)),
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center/cover;
+            padding: 80px 20px;
             text-align: center;
-            position: relative;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 5px;
-            width: 100%;
-            background-color: var(--spiced-wine);
         }
 
         .logo h1 {
-            color: var(--white);
-            font-size: 60px;
+            color: var(--dourado-folha);
+            font-size: 64px;
+            text-shadow: 2px 2px var(--marrom-escuro);
             letter-spacing: 2px;
-            text-shadow: 1px 1px var(--cowhide);
         }
 
         nav {
@@ -70,48 +60,48 @@
 
         nav ul li a {
             text-decoration: none;
-            color: var(--golden-batter);
-            background-color: rgba(116, 48, 20, 0.85);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
+            background-color: var(--marrom-claro);
+            color: var(--dourado-folha);
+            padding: 10px 25px;
+            border-radius: 30px;
             transition: background-color 0.3s;
+            font-weight: bold;
         }
 
         nav ul li a:hover {
-            background-color: var(--cowhide);
+            background-color: var(--marrom-escuro);
         }
 
-        /* ---------- APRESENTAÇÃO ---------- */
+        /* 🏞️ Apresentação */
         main {
             display: flex;
             justify-content: center;
-            padding: 80px 20px;
+            padding: 70px 20px;
         }
 
         .apresentacao {
             background-color: white;
-            border: 3px solid var(--olive-harvest);
+            border: 3px solid var(--dourado-folha);
             padding: 50px;
             max-width: 900px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         .apresentacao p {
             font-size: 18px;
             line-height: 1.8;
-            color: var(--cowhide);
+            color: var(--marrom-escuro);
             margin-bottom: 40px;
         }
 
-        /* ---------- BOTÃO ---------- */
+        /* 🔘 Botão */
         .apresentacao button {
-            background-color: var(--olive-harvest);
-            color: var(--golden-batter);
+            background-color: var(--laranja-outono);
+            color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 15px 45px;
             border-radius: 50px;
             font-size: 18px;
             font-weight: bold;
@@ -120,17 +110,16 @@
         }
 
         .apresentacao button:hover {
-            background-color: var(--cowhide);
+            background-color: var(--marrom-claro);
             transform: scale(1.05);
         }
 
-        /* ---------- RODAPÉ ---------- */
+        /* 🍂 Rodapé */
         footer {
-            background-color: var(--spiced-wine);
-            color: var(--golden-batter);
+            background-color: var(--marrom-escuro);
+            color: var(--dourado-folha);
             text-align: center;
-            padding: 15px;
-            margin-top: 50px;
+            padding: 20px;
         }
 
         footer p {
@@ -150,7 +139,7 @@
             <ul>
                 <li><a href="#">Instalações</a></li>
                 <li><a href="#">Restaurantes</a></li>
-                <li><a href="#">Serviços Oferecido</a></li>
+                <li><a href="#">Atividades</a></li>
             </ul>
         </nav>
     </header>
@@ -158,17 +147,17 @@
     <main>
         <section class="apresentacao">
             <p>
-                Seja bem-vindo ao <strong>Alpinia Palace</strong>, um refúgio de conforto, elegância e tranquilidade nas montanhas.
-                Com uma vista deslumbrante, acomodações sofisticadas e atendimento personalizado, oferecemos a você uma
-                experiência única de hospedagem. Seja para relaxar, celebrar momentos especiais ou explorar a natureza
-                ao redor, o Alpinia Palace é o destino ideal para quem busca charme e excelência em cada detalhe.
+                Bem-vindo ao <strong>Hotel Alpinia Palace</strong>, um refúgio elegante em meio às cores do outono.
+                Desfrute de acomodações aconchegantes, gastronomia sofisticada e paisagens deslumbrantes.
+                Viva experiências únicas, rodeado pela natureza, pelo charme das folhas douradas e pela tranquilidade
+                das montanhas.
             </p>
             <button>Reserve Agora</button>
         </section>
     </main>
 
     <footer>
-        <p>Sobre o Alpinia</p>
+        <p>© 2025 Hotel Alpinia Palace | Todos os direitos reservados</p>
     </footer>
 
 </body>
