@@ -23,7 +23,7 @@ const contratoSchema = new conexao.Schema({
         type: Number,
         required: true
     },
-      dataCadastro: {
+      dataReseva: {
         type: Date,
         default: Date.now
     }
