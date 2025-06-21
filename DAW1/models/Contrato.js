@@ -22,10 +22,13 @@ const contratoSchema = new conexao.Schema({
     valor: {
         type: Number,
         required: true
+    },
+      dataCadastro: {
+        type: Date,
+        default: Date.now
     }
 });
 
 const Contrato = conexao.model("Contrato", contratoSchema);
 
 export default Contrato;
-
