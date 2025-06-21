@@ -1,7 +1,96 @@
-const hotelController = require('../controllers/controllers');
+import express from 'express';
+const router = express.Router();
 
-// ROTAS HOTEL CRUD
-router.get('/hotel/cadastro-cliente', hotelController.showCadastroCliente);
-router.post('/hotel/cadastrar-cliente', hotelController.cadastrarCliente);
-router.post('/hotel/escolher-quarto', hotelController.escolherQuarto);
-router.post('/hotel/salvar-reserva', hotelController.salvarReserva);
+import {
+    abreAddCliente,
+    addCliente,
+    listarClientes,
+    abreEditCliente,
+    editarCliente,
+    deletarCliente,
+    filtrarClientes,
+
+    abreAddContrato,
+    addContrato,
+    listarContratos,
+    abreEditContrato,
+    editarContrato,
+    deletarContrato,
+    filtrarContratos,
+
+    abreAddTipQuarto,
+    addTipQuarto,
+    listarTipQuartos,
+    abreEditTipQuarto,
+    editarTipQuarto,
+    deletarTipQuarto,
+    filtrarTipQuartos,
+
+    abreAddQuarto,
+    addQuarto,
+    listarQuartos,
+    abreEditQuarto,
+    editarQuarto,
+    deletarQuarto,
+    filtrarQuartos,
+
+    abreAddServico,
+    addServico,
+    listarServicos,
+    abreEditServico,
+    editarServico,
+    deletarServico,
+    filtrarServicos
+} from './controllers/controllers.js';
+
+// Página inicial
+router.get('/', (req, res) => {
+    res.render('telainicial');
+});
+
+//Cliente
+router.get('/cliente/add', abreAddCliente);
+router.post('/cliente/add', addCliente);
+router.get('/cliente/lst', listarClientes);
+router.post('/cliente/lst', filtrarClientes);
+router.get('/cliente/edit/:id', abreEditCliente);
+router.post('/cliente/update/:id', editarCliente);
+router.post('/cliente/delete/:id', deletarCliente);
+
+//Contrato
+router.get('/contrato/add', abreAddContrato);
+router.post('/contrato/add', addContrato);
+router.get('/contrato/lst', listarContratos);
+router.post('/contrato/lst', filtrarContratos);
+router.get('/contrato/edit/:id', abreEditContrato);
+router.post('/contrato/update/:id', editarContrato);
+router.post('/contrato/delete/:id', deletarContrato);
+
+// TipQuarto
+router.get('/tipquarto/add', abreAddTipQuarto);
+router.post('/tipquarto/add', addTipQuarto);
+router.get('/tipquarto/lst', listarTipQuartos);
+router.post('/tipquarto/lst', filtrarTipQuartos);
+router.get('/tipquarto/edit/:id', abreEditTipQuarto);
+router.post('/tipquarto/update/:id', editarTipQuarto);
+router.post('/tipquarto/delete/:id', deletarTipQuarto);
+
+// Quarto
+router.get('/quarto/add', abreAddQuarto);
+router.post('/quarto/add', addQuarto);
+router.get('/quarto/lst', listarQuartos);
+router.post('/quarto/lst', filtrarQuartos);
+router.get('/quarto/edit/:id', abreEditQuarto);
+router.post('/quarto/update/:id', editarQuarto);
+router.post('/quarto/delete/:id', deletarQuarto);
+
+// Serviço
+router.get('/servico/add', abreAddServico);
+router.post('/servico/add', addServico);
+router.get('/servico/lst', listarServicos);
+router.post('/servico/lst', filtrarServicos);
+router.get('/servico/edit/:id', abreEditServico);
+router.post('/servico/update/:id', editarServico);
+router.post('/servico/delete/:id', deletarServico);
+
+export default router;
