@@ -1,0 +1,175 @@
+//é só a base//*******
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Alpinia Palace</title>
+
+    <style>
+        /* Paleta */
+        :root {
+            --cowhide: #3f2411;
+            --spiced-wine: #6e3712e7;
+            --toasted-caramel: #684c2f;
+            --olive-harvest: #a3ac70;
+            --golden-batter: #f0eade;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--golden-batter);
+            color: var(--cowhide);
+        }
+
+        /* ---------- CABEÇALHO ---------- */
+        header {
+            background: url('imagem.jpg') no-repeat center/cover;
+            padding: 60px 20px 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            width: 100%;
+            background-color: var(--spiced-wine);
+        }
+
+        .logo h1 {
+            color: var(--white);
+            font-size: 60px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px var(--cowhide);
+        }
+
+        nav {
+            margin-top: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--golden-batter);
+            background-color: rgba(116, 48, 20, 0.85);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--cowhide);
+        }
+
+        /* ---------- APRESENTAÇÃO ---------- */
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+
+        .apresentacao {
+            background-color: white;
+            border: 3px solid var(--olive-harvest);
+            padding: 50px;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .apresentacao p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--cowhide);
+            margin-bottom: 40px;
+        }
+
+        /* ---------- BOTÃO ---------- */
+        .apresentacao button {
+            background-color: var(--olive-harvest);
+            color: var(--golden-batter);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .apresentacao button:hover {
+            background-color: var(--cowhide);
+            transform: scale(1.05);
+        }
+
+        /* ---------- RODAPÉ ---------- */
+        footer {
+            background-color: var(--spiced-wine);
+            color: var(--golden-batter);
+            text-align: center;
+            padding: 15px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Hotel Alpinia Palace</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Instalações</a></li>
+                <li><a href="#">Restaurantes</a></li>
+                <li><a href="#">Serviços Oferecido</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="apresentacao">
+            <p>
+                Seja bem-vindo ao <strong>Alpinia Palace</strong>, um refúgio de conforto, elegância e tranquilidade nas montanhas.
+                Com uma vista deslumbrante, acomodações sofisticadas e atendimento personalizado, oferecemos a você uma
+                experiência única de hospedagem. Seja para relaxar, celebrar momentos especiais ou explorar a natureza
+                ao redor, o Alpinia Palace é o destino ideal para quem busca charme e excelência em cada detalhe.
+            </p>
+            <button>Reserve Agora</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Sobre o Alpinia</p>
+    </footer>
+
+</body>
+</html>
