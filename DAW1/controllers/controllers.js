@@ -1,35 +1,314 @@
-const Cliente = require('../models/Cliente');
-const Reserva = require('../models/Reserva');
+import Cliente from "../models/Cliente.js";
 
-let tempClienteId = null;
-let tempQuarto = null;
+export function abreAddCliente(req, res) {
+    res.render("addCliente");
+}
 
-exports.showCadastroCliente = (req, res) => {
-    res.render('cadastrocliente');
-};
+export async function addCliente(req, res) {
+    await Cliente.create(req.body);
+    res.redirect("/clientes");
+}
 
-exports.cadastrarCliente = (req, res) => {
-    Cliente.create(req.body, (err, result) => {
-        if (err) throw err;
-        tempClienteId = result.insertId;
-        res.render('escolhaquarto', { cliente_id: tempClienteId });
-    });
-};
+export async function listarCliente(req, res) {
+    const clientes = await Cliente.find();
+    res.render("listarCliente", { clientes });
+}
 
-exports.escolherQuarto = (req, res) => {
-    tempQuarto = req.body.quarto;
-    res.render('dadosreserva', { cliente_id: req.body.cliente_id, quarto: tempQuarto });
-};
+export async function filtrarCliente(req, res) {
+    const filtro = req.body.filtro;
+    const clientes = await Cliente.find({ nome: { $regex: filtro, $options: "i" } });
+    res.render("listarCliente", { clientes });
+}
 
-exports.salvarReserva = (req, res) => {
-    const reserva = {
-        cliente_id: req.body.cliente_id,
-        quarto: req.body.quarto,
-        data_entrada: req.body.data_entrada,
-        data_saida: req.body.data_saida
-    };
-    Reserva.create(reserva, (err, result) => {
-        if (err) throw err;
-        res.render('confirmacao', reserva);
-    });
-};
+export async function abreEditCliente(req, res) {
+    const cliente = await Cliente.findById(req.params.id);
+    res.render("editCliente", { cliente });
+}
+
+export async function editCliente(req, res) {
+    await Cliente.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/clientes");
+}
+
+export async function deleteCliente(req, res) {
+    await Cliente.findByIdAndDelete(req.params.id);
+    res.redirect("/clientes");
+}
+
+//-------------------------------------------------------------Contrato//
+
+import Contrato from "../models/Contrato.js";
+
+export function abreAddContrato(req, res) {
+    res.render("addContrato");
+}
+
+export async function addContrato(req, res) {
+    await Contrato.create(req.body);
+    res.redirect("/contratos");
+}
+
+export async function listarContrato(req, res) {
+    const contratos = await Contrato.find();
+    res.render("listarContrato", { contratos });
+}
+
+export async function filtrarContrato(req, res) {
+    const filtro = req.body.filtro;
+    const contratos = await Contrato.find({ valor: { $regex: filtro, $options: "i" } });
+    res.render("listarContrato", { contratos });
+}
+
+export async function abreEditContrato(req, res) {
+    const contrato = await Contrato.findById(req.params.id);
+    res.render("editContrato", { contrato });
+}
+
+export async function editContrato(req, res) {
+    await Contrato.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/contratos");
+}
+
+export async function deleteContrato(req, res) {
+    await Contrato.findByIdAndDelete(req.params.id);
+    res.redirect("/contratos");
+}
+
+
+//-------------------------------------------------------------TipQuarto//
+
+import Tipquarto from "../models/Tipquarto.js";
+
+export function abreAddTipquarto(req, res) {
+    res.render("addTipquarto");
+}
+
+export async function addTipquarto(req, res) {
+    await Tipquarto.create(req.body);
+    res.redirect("/tipquartos");
+}
+
+export async function listarTipquarto(req, res) {
+    const tipquartos = await Tipquarto.find();
+    res.render("listarTipquarto", { tipquartos });
+}
+
+export async function filtrarTipquarto(req, res) {
+    const filtro = req.body.filtro;
+    const tipquartos = await Tipquarto.find({ nome: { $regex: filtro, $options: "i" } });
+    res.render("listarTipquarto", { tipquartos });
+}
+
+export async function abreEditTipquarto(req, res) {
+    const tipquarto = await Tipquarto.findById(req.params.id);
+    res.render("editTipquarto", { tipquarto });
+}
+
+export async function editTipquarto(req, res) {
+    await Tipquarto.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/tipquartos");
+}
+
+export async function deleteTipquarto(req, res) {
+    await Tipquarto.findByIdAndDelete(req.params.id);
+    res.redirect("/tipquartos");
+}
+
+//-------------------------------------------------------------Quarto//
+
+import Quarto from "../models/Quarto.js";
+
+export function abreAddQuarto(req, res) {
+    res.render("addQuarto");
+}
+
+export async function addQuarto(req, res) {
+    await Quarto.create(req.body);
+    res.redirect("/quartos");
+}
+
+export async function listarQuarto(req, res) {
+    const quartos = await Quarto.find();
+    res.render("listarQuarto", { quartos });
+}
+
+export async function filtrarQuarto(req, res) {
+    const filtro = req.body.filtro;
+    const quartos = await Quarto.find({ andar: { $regex: filtro, $options: "i" } });
+    res.render("listarQuarto", { quartos });
+}
+
+export async function abreEditQuarto(req, res) {
+    const quarto = await Quarto.findById(req.params.id);
+    res.render("editQuarto", { quarto });
+}
+
+export async function editQuarto(req, res) {
+    await Quarto.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/quartos");
+}
+
+export async function deleteQuarto(req, res) {
+    await Quarto.findByIdAndDelete(req.params.id);
+    res.redirect("/quartos");
+}
+
+
+//-------------------------------------------------------------Servico//
+
+import Servico from "../models/Servico.js";
+
+export function abreAddServico(req, res) {
+    res.render("addServico");
+}
+
+export async function addServico(req, res) {
+    await Servico.create(req.body);
+    res.redirect("/servicos");
+}
+
+export async function listarServico(req, res) {
+    const servicos = await Servico.find();
+    res.render("listarServico", { servicos });
+}
+
+export async function filtrarServico(req, res) {
+    const filtro = req.body.filtro;
+    const servicos = await Servico.find({ descricao: { $regex: filtro, $options: "i" } });
+    res.render("listarServico", { servicos });
+}
+
+export async function abreEditServico(req, res) {
+    const servico = await Servico.findById(req.params.id);
+    res.render("editServico", { servico });
+}
+
+export async function editServico(req, res) {
+    await Servico.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/servicos");
+}
+
+export async function deleteServico(req, res) {
+    await Servico.findByIdAndDelete(req.params.id);
+    res.redirect("/servicos");
+}
+
+
+//-------------------------------------------------------------Extra//
+
+import Extra from "../models/Extra.js";
+
+export function abreAddExtra(req, res) {
+    res.render("addExtra");
+}
+
+export async function addExtra(req, res) {
+    await Extra.create(req.body);
+    res.redirect("/extras");
+}
+
+export async function listarExtra(req, res) {
+    const extras = await Extra.find().populate("contrato").populate("servico");
+    res.render("listarExtra", { extras });
+}
+
+export async function filtrarExtra(req, res) {
+    const filtro = req.body.filtro;
+    const extras = await Extra.find({}).populate("contrato").populate("servico");
+    res.render("listarExtra", { extras });
+}
+
+export async function abreEditExtra(req, res) {
+    const extra = await Extra.findById(req.params.id);
+    res.render("editExtra", { extra });
+}
+
+export async function editExtra(req, res) {
+    await Extra.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/extras");
+}
+
+export async function deleteExtra(req, res) {
+    await Extra.findByIdAndDelete(req.params.id);
+    res.redirect("/extras");
+}
+
+
+//-------------------------------------------------------------Extra//
+
+import Extra from "../models/Extra.js";
+
+export function abreAddExtra(req, res) {
+    res.render("addExtra");
+}
+
+export async function addExtra(req, res) {
+    await Extra.create(req.body);
+    res.redirect("/extras");
+}
+
+export async function listarExtra(req, res) {
+    const extras = await Extra.find().populate("contrato").populate("servico");
+    res.render("listarExtra", { extras });
+}
+
+export async function filtrarExtra(req, res) {
+    const filtro = req.body.filtro;
+    const extras = await Extra.find({}).populate("contrato").populate("servico");
+    res.render("listarExtra", { extras });
+}
+
+export async function abreEditExtra(req, res) {
+    const extra = await Extra.findById(req.params.id);
+    res.render("editExtra", { extra });
+}
+
+export async function editExtra(req, res) {
+    await Extra.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/extras");
+}
+
+export async function deleteExtra(req, res) {
+    await Extra.findByIdAndDelete(req.params.id);
+    res.redirect("/extras");
+}
+
+
+//-------------------------------------------------------------Extra//
+
+import Fixo from "../models/Fixo.js";
+
+export function abreAddFixo(req, res) {
+    res.render("addFixo");
+}
+
+export async function addFixo(req, res) {
+    await Fixo.create(req.body);
+    res.redirect("/fixos");
+}
+
+export async function listarFixo(req, res) {
+    const fixos = await Fixo.find().populate("quarto").populate("servico");
+    res.render("listarFixo", { fixos });
+}
+
+export async function filtrarFixo(req, res) {
+    const filtro = req.body.filtro;
+    const fixos = await Fixo.find({}).populate("quarto").populate("servico");
+    res.render("listarFixo", { fixos });
+}
+
+export async function abreEditFixo(req, res) {
+    const fixo = await Fixo.findById(req.params.id);
+    res.render("editFixo", { fixo });
+}
+
+export async function editFixo(req, res) {
+    await Fixo.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/fixos");
+}
+
+export async function deleteFixo(req, res) {
+    await Fixo.findByIdAndDelete(req.params.id);
+    res.redirect("/fixos");
+}
