@@ -2,7 +2,7 @@ import conexao from "../config/conexao.js";
 
 const quartoSchema = new conexao.Schema({
     diaria: {
-        type: Number, // Numeric é Number no Mongoose
+        type: Number,
         required: true,
     },
     capacidade: {
@@ -11,6 +11,11 @@ const quartoSchema = new conexao.Schema({
     },
     andar: {
         type: String,
+        required: true,
+    },
+    tipquarto: {
+        type: conexao.Schema.Types.ObjectId,
+        ref: "Tipquarto",  // nome do modelo referenciado
         required: true,
     }
 });
