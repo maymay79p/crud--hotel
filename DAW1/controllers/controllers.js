@@ -35,12 +35,54 @@ export async function deleteCliente(req, res) {
     res.redirect("/clientes");
 }
 
+//-------------------------------------------------------------Quarto//
+
+import Quarto from "../models/Quarto.js";
+
+export function abreAddQuarto(req, res) {
+    res.render("addQuarto");
+}
+
+export async function addQuarto(req, res) {
+    await Quarto.create(req.body);
+    res.redirect("/quartos");
+}
+
+export async function listarQuarto(req, res) {
+    const quartos = await Quarto.find();
+    res.render("listarQuarto", { quartos });
+}
+
+export async function filtrarQuarto(req, res) {
+    const filtro = req.body.filtro;
+    const quartos = await Quarto.find({ andar: { $regex: filtro, $options: "i" } });
+    res.render("listarQuarto", { quartos });
+}
+
+export async function abreEditQuarto(req, res) {
+    const quarto = await Quarto.findById(req.params.id);
+    res.render("editQuarto", { quarto });
+}
+
+export async function editQuarto(req, res) {
+    await Quarto.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/quartos");
+}
+
+export async function deleteQuarto(req, res) {
+    await Quarto.findByIdAndDelete(req.params.id);
+    res.redirect("/quartos");
+}
+
+
 //-------------------------------------------------------------Contrato//
 
 import Contrato from "../models/Contrato.js";
 
-export function abreAddContrato(req, res) {
-    res.render("addContrato");
+export async function abreAddContrato(req, res) {
+    const clientes = await Cliente.find();
+    const quartos = await Quarto.find();
+    res.render("reserva", { clientes, quartos });
 }
 
 export async function addContrato(req, res) {
@@ -49,19 +91,27 @@ export async function addContrato(req, res) {
 }
 
 export async function listarContrato(req, res) {
-    const contratos = await Contrato.find();
+    const contratos = await Contrato.find()
+        .populate("cliente")
+        .populate("quarto");
     res.render("listarContrato", { contratos });
 }
 
 export async function filtrarContrato(req, res) {
-    const filtro = req.body.filtro;
-    const contratos = await Contrato.find({ valor: { $regex: filtro, $options: "i" } });
+    const filtro = req.body.filtro || "";
+    const clientes = await Cliente.find({ nome: { $regex: filtro, $options: "i" } });
+    const clientesIds = clientes.map(c => c._id);
+    const contratos = await Contrato.find({ cliente: { $in: clientesIds } })
+        .populate("cliente")
+        .populate("quarto");
     res.render("listarContrato", { contratos });
 }
 
 export async function abreEditContrato(req, res) {
     const contrato = await Contrato.findById(req.params.id);
-    res.render("editContrato", { contrato });
+    const clientes = await Cliente.find();
+    const quartos = await Quarto.find();
+    res.render("editContrato", { contrato, clientes, quartos });
 }
 
 export async function editContrato(req, res) {
@@ -113,46 +163,6 @@ export async function deleteTipquarto(req, res) {
     await Tipquarto.findByIdAndDelete(req.params.id);
     res.redirect("/tipquartos");
 }
-
-//-------------------------------------------------------------Quarto//
-
-import Quarto from "../models/Quarto.js";
-
-export function abreAddQuarto(req, res) {
-    res.render("addQuarto");
-}
-
-export async function addQuarto(req, res) {
-    await Quarto.create(req.body);
-    res.redirect("/quartos");
-}
-
-export async function listarQuarto(req, res) {
-    const quartos = await Quarto.find();
-    res.render("listarQuarto", { quartos });
-}
-
-export async function filtrarQuarto(req, res) {
-    const filtro = req.body.filtro;
-    const quartos = await Quarto.find({ andar: { $regex: filtro, $options: "i" } });
-    res.render("listarQuarto", { quartos });
-}
-
-export async function abreEditQuarto(req, res) {
-    const quarto = await Quarto.findById(req.params.id);
-    res.render("editQuarto", { quarto });
-}
-
-export async function editQuarto(req, res) {
-    await Quarto.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/quartos");
-}
-
-export async function deleteQuarto(req, res) {
-    await Quarto.findByIdAndDelete(req.params.id);
-    res.redirect("/quartos");
-}
-
 
 //-------------------------------------------------------------Servico//
 
@@ -274,7 +284,7 @@ export async function deleteExtra(req, res) {
 }
 
 
-//-------------------------------------------------------------Extra//
+//-------------------------------------------------------------Fixo//
 
 import Fixo from "../models/Fixo.js";
 
