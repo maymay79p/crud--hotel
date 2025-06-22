@@ -1,6 +1,6 @@
-import conexao from '../config/conexao.js';
+import mongoose from '../config/conexao.js'; // assumindo que 'conexao' exporta o mongoose conectado
 
-const clienteSchema = new conexao.Schema({
+const clienteSchema = new mongoose.Schema({
     nome: {
         type: String,
         required: true,
@@ -21,13 +21,18 @@ const clienteSchema = new conexao.Schema({
         type: String,
         required: true,
     },
+    senha: {
+        type: String,
+        required: true,
+    },
     dataCadastro: {
         type: Date,
         default: Date.now
     }
 });
 
-const Cliente = conexao.model("Cliente", ClienteSchema);
+const Cliente = mongoose.model("Cliente", clienteSchema);
 
 export default Cliente;
+
 
