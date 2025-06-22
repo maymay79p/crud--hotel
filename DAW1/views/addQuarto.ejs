@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Quarto</title>
+    <style>
+        body {
+            background-color: #f8f4f0;
+            color: #5a3e36;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background-color: #fffaf5;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #8b4513;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #8b4513;
+            border-radius: 8px;
+            background-color: #fffdfb;
+        }
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #a0522d;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #8b4513;
+        }
+        .voltar {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #5a3e36;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Quarto</h1>
+        <form action="/quarto/add" method="POST">
+            <label>Diária (R$):</label>
+            <input type="number" name="diaria" step="0.01" required>
+
+            <label>Capacidade:</label>
+            <input type="text" name="capacidade" required>
+
+            <label>Andar:</label>
+            <input type="text" name="andar" required>
+
+            <label>Tipo de Quarto:</label>
+            <select name="tipquarto" required>
+                <option value="">Selecione...</option>
+                <% tiposDeQuarto.forEach(tipo => { %>
+                    <option value="<%= tipo._id || tipo.nome %>">
+                        <%= tipo.nome %> - <%= tipo.descricao %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <button class="btn" type="submit">Salvar</button>
+        </form>
+        <a class="voltar" href="/quarto/lst">← Voltar para lista</a>
+    </div>
+</body>
+</html>
