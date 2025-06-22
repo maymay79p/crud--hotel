@@ -21,10 +21,6 @@ const clienteSchema = new conexao.Schema({
         type: String,
         required: true,
     },
-    senha: {
-        type: String,
-        required: true,
-    },
     dataCadastro: {
         type: Date,
         default: Date.now
