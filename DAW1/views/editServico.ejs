@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Serviço</title>
+    <style>
+        /* Mesmo estilo da addServico */
+        body { background-color: #f6eee3; color: #5a3e36; font-family: 'Segoe UI', sans-serif; }
+        .container { width: 500px; margin: 50px auto; background-color: #fffaf5; padding: 30px;
+            border-radius: 14px; box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3); border: 2px solid #a0522d; }
+        h1 { text-align: center; color: #8b4513; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input { width: 100%; padding: 10px; border: 2px solid #a0522d;
+            border-radius: 10px; background-color: #fffdfb; }
+        .btn { margin-top: 25px; width: 100%; background-color: #a0522d; color: white;
+            border: none; padding: 12px; border-radius: 10px; cursor: pointer; }
+        .btn:hover { background-color: #8b4513; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Serviço</h1>
+        <form action="/servico/update/<%= servico._id %>" method="POST">
+            <label>Descrição:</label>
+            <input type="text" name="descricao" value="<%= servico.descricao %>" required>
+
+            <label>Média de Valor (R$):</label>
+            <input type="number" step="0.01" name="mediaValor" value="<%= servico.mediaValor %>" required>
+
+            <button class="btn" type="submit">Salvar Alterações</button>
+        </form>
+    </div>
+</body>
+</html>
