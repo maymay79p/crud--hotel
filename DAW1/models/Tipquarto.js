@@ -1,6 +1,6 @@
-import conexao from "../config/conexao.js";
+import mongoose from 'mongoose';
 
-const tipquartoSchema = new conexao.Schema({
+const tipquartoSchema = new mongoose.Schema({
     nome: {
         type: String,
         required: true,
@@ -11,6 +11,6 @@ const tipquartoSchema = new conexao.Schema({
     }
 });
 
-const Tipquarto = conexao.model("Tipquarto", tipquartoSchema);
+const Tipquarto = mongoose.model("Tipquarto", tipquartoSchema);
 
 export default Tipquarto;
