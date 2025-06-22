@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tipo de Quarto</title>
+    <style>
+        body {
+            background-color: #f9f5f0;
+            color: #5a3e36;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background-color: #fff7f0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(90, 62, 54, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #a0522d;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a0522d;
+            border-radius: 8px;
+            background-color: #fffaf5;
+        }
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #cd853f;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #a0522d;
+        }
+        .voltar {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #5a3e36;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Tipo de Quarto</h1>
+        <form action="/tipquarto/update/<%= tipquarto._id %>" method="POST">
+            <label>Nome:</label>
+            <input type="text" name="nome" value="<%= tipquarto.nome %>" required>
+
+            <label>Descrição:</label>
+            <textarea name="descricao" rows="4" required><%= tipquarto.descricao %></textarea>
+
+            <button class="btn" type="submit">Salvar Alterações</button>
+        </form>
+        <a class="voltar" href="/tipquarto/lst">← Voltar para lista</a>
+    </div>
+</body>
+</html>
