@@ -2,51 +2,61 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Extra</title>
+
+    <title>Lista de Extras</title>
     <style>
-        /* Mesmo CSS do addExtra */
         body { background-color: #f6eee3; color: #5a3e36; font-family: 'Segoe UI', sans-serif; }
-        .container { width: 500px; margin: 50px auto; background-color: #fffaf5; padding: 30px;
-            border-radius: 14px; box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3); border: 2px solid #a0522d; }
-        h1 { text-align: center; color: #8b4513; }
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        select, input { width: 100%; padding: 10px; border: 2px solid #a0522d;
-            border-radius: 10px; background-color: #fffdfb; }
-        .btn { margin-top: 25px; width: 100%; background-color: #a0522d; color: white;
-            border: none; padding: 12px; border-radius: 10px; cursor: pointer; }
+        .container { width: 90%; margin: 40px auto; background-color: #fffaf5;
+            padding: 25px; border-radius: 14px; box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
+            border: 2px solid #a0522d; }
+        h1 { text-align: center; color: #8b4513; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background-color: #fffdfb; }
+        th, td { border: 2px solid #a0522d; padding: 12px 15px; text-align: center; }
+        th { background-color: #cd853f; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #fef7f1; }
+        tr:hover { background-color: #f5e5d8; }
+        .btn { background-color: #a0522d; color: white; padding: 8px 14px; border: none;
+            border-radius: 8px; text-decoration: none; cursor: pointer; transition: background-color 0.3s; }
         .btn:hover { background-color: #8b4513; }
+        form { display: inline; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Editar Extra</h1>
-        <form action="/extra/update/<%= extra._id %>" method="POST">
-            <label>Contrato:</label>
-            <select name="contrato" required>
-                <% contratos.forEach(contrato => { %>
-                    <option value="<%= contrato._id %>" <%= extra.contrato.equals(contrato._id) ? 'selected' : '' %>>
-                        Cliente: <%= contrato.cliente.nome %> | Quarto: <%= contrato.quarto.tipquarto.nome || contrato.quarto.tipquarto %> - Andar <%= contrato.quarto.andar %>
-                    </option>
-                <% }) %>
-            </select>
+        <h1>Lista de Extras</h1>
 
-            <label>Serviço:</label>
-            <select name="servico" required>
-                <% servicos.forEach(servico => { %>
-                    <option value="<%= servico._id %>" <%= extra.servico.equals(servico._id) ? 'selected' : '' %>>
-                        <%= servico.descricao %> - R$ <%= servico.mediaValor.toFixed(2) %>
-                    </option>
-                <% }) %>
-            </select>
-
-            <label>Quantidade:</label>
-            <input type="number" name="quantidade" min="1" value="<%= extra.quantidade %>" required>
-
-            <label>Valor Total (R$):</label>
-            <input type="number" step="0.01" name="valor_total" value="<%= extra.valor_total %>" required>
-
-            <button class="btn" type="submit">Salvar Alterações</button>
+        <form action="/extra/lst" method="POST">
+            <input type="text" name="filtro" placeholder="Buscar...">
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn" href="/extra/add">➕ Novo Extra</a>
         </form>
+
+        <table>
+            <tr>
+                <th>Contrato</th>
+                <th>Serviço</th>
+                <th>Quantidade</th>
+                <th>Valor Total (R$)</th>
+                <th>Ações</th>
+            </tr>
+            <% extras.forEach(extra => { %>
+                <tr>
+                    <td>
+                        Cliente: <%= extra.contrato.cliente.nome %> <br>
+                        Quarto: <%= extra.contrato.quarto.tipquarto.nome || extra.contrato.quarto.tipquarto %> - Andar <%= extra.contrato.quarto.andar %>
+                    </td>
+                    <td><%= extra.servico.descricao %></td>
+                    <td><%= extra.quantidade %></td>
+                    <td>R$ <%= extra.valor_extra.toFixed(2) %></td>
+                    <td>
+                        <a class="btn" href="/extra/edit/<%= extra._id %>">Editar</a>
+                        <form action="/extra/delete/<%= extra._id %>" method="POST">
+                            <button class="btn" type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
     </div>
 </body>
 </html>
