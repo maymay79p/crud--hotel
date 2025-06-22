@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Contratos</title>
+    <style>
+        body {
+            background-color: #f6eee3;
+            color: #5a3e36;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            width: 90%;
+            margin: 40px auto;
+            background-color: #fffaf5;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
+            border: 2px solid #a0522d;
+        }
+        h1 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fffdfb;
+        }
+        th, td {
+            border: 2px solid #a0522d;
+            padding: 12px 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #cd853f;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) {
+            background-color: #fef7f1;
+        }
+        tr:hover {
+            background-color: #f5e5d8;
+        }
+        .btn {
+            background-color: #a0522d;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #8b4513;
+        }
+        form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Contratos</h1>
+
+        <table>
+            <tr>
+                <th>Cliente</th>
+                <th>Quarto</th>
+                <th>Período</th>
+                <th>Valor (R$)</th>
+                <th>Ações</th>
+            </tr>
+            <% contratos.forEach(contrato => { %>
+                <tr>
+                    <td><%= contrato.cliente.nome %></td>
+                    <td>
+                        Tipo: <%= contrato.quarto.tipquarto.nome || contrato.quarto.tipquarto %> |
+                        Andar: <%= contrato.quarto.andar %>
+                    </td>
+                    <td><%= contrato.data_inicio.toLocaleDateString() %> até <%= contrato.data_fim.toLocaleDateString() %></td>
+                    <td>R$ <%= contrato.valor.toFixed(2) %></td>
+                    <td>
+                        <a class="btn" href="/contrato/edit/<%= contrato._id %>">Editar</a>
+                        <form action="/contrato/delete/<%= contrato._id %>" method="POST">
+                            <button class="btn" type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</body>
+</html>
