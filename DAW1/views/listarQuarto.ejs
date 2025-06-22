@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Quartos</title>
+    <style>
+        body {
+            background-color: #f8f4f0;
+            color: #5a3e36;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: #fffaf5;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #8b4513;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #8b4513;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #a0522d;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #fffaf5;
+        }
+        .btn {
+            background-color: #a0522d;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .btn:hover {
+            background-color: #8b4513;
+        }
+        .form-filtro {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #8b4513;
+            width: 200px;
+            background-color: #fffdfb;
+        }
+        .add-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            background-color: #a0522d;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .add-link:hover {
+            background-color: #8b4513;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Quartos</h1>
+
+        <a class="add-link" href="/quarto/add">➕ Adicionar Quarto</a>
+
+        <form class="form-filtro" action="/quarto/lst" method="POST">
+            <input type="text" name="filtro" placeholder="Filtrar por andar">
+            <button class="btn" type="submit">Buscar</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Diária (R$)</th>
+                <th>Capacidade</th>
+                <th>Andar</th>
+                <th>Tipo de Quarto</th>
+                <th>Ações</th>
+            </tr>
+            <% quartos.forEach(quarto => { %>
+                <tr>
+                    <td><%= quarto.diaria.toFixed(2) %></td>
+                    <td><%= quarto.capacidade %></td>
+                    <td><%= quarto.andar %></td>
+                    <td><%= quarto.tipquarto.nome || quarto.tipquarto %></td>
+                    <td>
+                        <a class="btn" href="/quarto/edit/<%= quarto._id %>">Editar</a>
+                        <form style="display:inline;" action="/quarto/delete/<%= quarto._id %>" method="POST">
+                            <button class="btn" type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</body>
+</html>
