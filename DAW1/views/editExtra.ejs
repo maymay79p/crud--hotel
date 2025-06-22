@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Editar Extra</title>
     <style>
-        /* Mesmo CSS do addExtra */
         body { background-color: #f6eee3; color: #5a3e36; font-family: 'Segoe UI', sans-serif; }
         .container { width: 500px; margin: 50px auto; background-color: #fffaf5; padding: 30px;
             border-radius: 14px; box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3); border: 2px solid #a0522d; }
@@ -34,7 +33,7 @@
             <select name="servico" required>
                 <% servicos.forEach(servico => { %>
                     <option value="<%= servico._id %>" <%= extra.servico.equals(servico._id) ? 'selected' : '' %>>
-                        <%= servico.descricao %> - R$ <%= servico.mediaValor.toFixed(2) %>
+                        <%= servico.descricao %>
                     </option>
                 <% }) %>
             </select>
@@ -42,8 +41,8 @@
             <label>Quantidade:</label>
             <input type="number" name="quantidade" min="1" value="<%= extra.quantidade %>" required>
 
-            <label>Valor Total (R$):</label>
-            <input type="number" step="0.01" name="valor_total" value="<%= extra.valor_total %>" required>
+            <label>Valor Total do Extra (R$):</label>
+            <input type="number" step="0.01" name="valor_extra" value="<%= extra.valor_extra %>" required>
 
             <button class="btn" type="submit">Salvar Alterações</button>
         </form>
