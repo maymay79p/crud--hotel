@@ -4,43 +4,43 @@ const router = express.Router();
 import {
     abreAddCliente,
     addCliente,
-    listarClientes,
+    listarCliente,
     abreEditCliente,
-    editarCliente,
-    deletarCliente,
-    filtrarClientes,
+    editCliente,
+    deleteCliente,
+    filtrarCliente,
 
     abreAddContrato,
     addContrato,
-    listarContratos,
+    listarContrato,
     abreEditContrato,
-    editarContrato,
-    deletarContrato,
-    filtrarContratos,
+    editContrato,
+    deleteContrato,
+    filtrarContrato,
 
-    abreAddTipQuarto,
-    addTipQuarto,
-    listarTipQuartos,
-    abreEditTipQuarto,
-    editarTipQuarto,
-    deletarTipQuarto,
-    filtrarTipQuartos,
+    abreAddTipquarto,
+    addTipquarto,
+    listarTipquarto,
+    abreEditTipquarto,
+    editTipquarto,
+    deleteTipquarto,
+    filtrarTipquarto,
 
     abreAddQuarto,
     addQuarto,
-    listarQuartos,
+    listarQuarto,
     abreEditQuarto,
-    editarQuarto,
-    deletarQuarto,
-    filtrarQuartos,
+    editQuarto,
+    deleteQuarto,
+    filtrarQuarto,
 
     abreAddServico,
     addServico,
-    listarServicos,
+    listarServico,
     abreEditServico,
-    editarServico,
-    deletarServico,
-    filtrarServicos,
+    editServico,
+    deleteServico,
+    filtrarServico,
     
     abreAddExtra,
     addExtra,
@@ -57,59 +57,59 @@ import {
     abreEditFixo,
     editFixo,
     deleteFixo
-} from './controllers/controllers.js'; 
+} from '../controllers/controllers.js';
 
 // Página inicial
 router.get('/', (req, res) => {
     res.render('telainicial');
 });
 
-//Cliente
+// Cliente
 router.get('/cliente/add', abreAddCliente);
 router.post('/cliente/add', addCliente);
-router.get('/cliente/lst', listarClientes);
-router.post('/cliente/lst', filtrarClientes);
+router.get('/cliente/lst', listarCliente);
+router.post('/cliente/lst', filtrarCliente);
 router.get('/cliente/edit/:id', abreEditCliente);
-router.post('/cliente/update/:id', editarCliente);
-router.post('/cliente/delete/:id', deletarCliente);
+router.post('/cliente/update/:id', editCliente);
+router.post('/cliente/delete/:id', deleteCliente);
 
-//Contrato
+// Contrato
 router.get('/contrato/add', abreAddContrato);
 router.post('/contrato/add', addContrato);
-router.get('/contrato/lst', listarContratos);
-router.post('/contrato/lst', filtrarContratos);
+router.get('/contrato/lst', listarContrato);
+router.post('/contrato/lst', filtrarContrato);
 router.get('/contrato/edit/:id', abreEditContrato);
-router.post('/contrato/update/:id', editarContrato);
-router.post('/contrato/delete/:id', deletarContrato);
+router.post('/contrato/update/:id', editContrato);
+router.post('/contrato/delete/:id', deleteContrato);
 
-//TipQuarto
-router.get('/tipquarto/add', abreAddTipQuarto);
-router.post('/tipquarto/add', addTipQuarto);
-router.get('/tipquarto/lst', listarTipQuartos);
-router.post('/tipquarto/lst', filtrarTipQuartos);
-router.get('/tipquarto/edit/:id', abreEditTipQuarto);
-router.post('/tipquarto/update/:id', editarTipQuarto);
-router.post('/tipquarto/delete/:id', deletarTipQuarto);
+// Tipquarto
+router.get('/tipquarto/add', abreAddTipquarto);
+router.post('/tipquarto/add', addTipquarto);
+router.get('/tipquarto/lst', listarTipquarto);
+router.post('/tipquarto/lst', filtrarTipquarto);
+router.get('/tipquarto/edit/:id', abreEditTipquarto);
+router.post('/tipquarto/update/:id', editTipquarto);
+router.post('/tipquarto/delete/:id', deleteTipquarto);
 
-//Quarto
+// Quarto
 router.get('/quarto/add', abreAddQuarto);
 router.post('/quarto/add', addQuarto);
-router.get('/quarto/lst', listarQuartos);
-router.post('/quarto/lst', filtrarQuartos);
+router.get('/quarto/lst', listarQuarto);
+router.post('/quarto/lst', filtrarQuarto);
 router.get('/quarto/edit/:id', abreEditQuarto);
-router.post('/quarto/update/:id', editarQuarto);
-router.post('/quarto/delete/:id', deletarQuarto);
+router.post('/quarto/update/:id', editQuarto);
+router.post('/quarto/delete/:id', deleteQuarto);
 
-//Serviço
+// Serviço
 router.get('/servico/add', abreAddServico);
 router.post('/servico/add', addServico);
-router.get('/servico/lst', listarServicos);
-router.post('/servico/lst', filtrarServicos);
+router.get('/servico/lst', listarServico);
+router.post('/servico/lst', filtrarServico);
 router.get('/servico/edit/:id', abreEditServico);
-router.post('/servico/update/:id', editarServico);
-router.post('/servico/delete/:id', deletarServico);
+router.post('/servico/update/:id', editServico);
+router.post('/servico/delete/:id', deleteServico);
 
-//Extra
+// Extra
 router.get('/extra/add', abreAddExtra);
 router.post('/extra/add', addExtra);
 router.get('/extra/lst', listarExtra);
@@ -118,7 +118,7 @@ router.get('/extra/edit/:id', abreEditExtra);
 router.post('/extra/update/:id', editExtra);
 router.post('/extra/delete/:id', deleteExtra);
 
-//Fixo
+// Fixo
 router.get('/fixo/add', abreAddFixo);
 router.post('/fixo/add', addFixo);
 router.get('/fixo/lst', listarFixo);
