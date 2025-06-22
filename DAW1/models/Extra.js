@@ -1,13 +1,13 @@
-import conexao from "../config/conexao.js";
+import mongoose from 'mongoose';
 
-const extraSchema = new conexao.Schema({
+const extraSchema = new mongoose.Schema({
     contrato: {
-        type: conexao.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Contrato",
         required: true
     },
     servico: {
-        type: conexao.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Servico",
         required: true
     },
@@ -22,6 +22,7 @@ const extraSchema = new conexao.Schema({
     }
 });
 
-const Extra = conexao.model("Extra", extraSchema);
+const Extra = mongoose.model("Extra", extraSchema);
 
 export default Extra;
+
