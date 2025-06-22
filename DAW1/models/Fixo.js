@@ -1,13 +1,13 @@
-import conexao from "../config/conexao.js";
+import mongoose from 'mongoose';
 
-const fixoSchema = new conexao.Schema({
+const fixoSchema = new mongoose.Schema({
     quarto: {
-        type: conexao.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Quarto",
         required: true
     },
     servico: {
-        type: conexao.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Servico",
         required: true
     },
@@ -17,6 +17,6 @@ const fixoSchema = new conexao.Schema({
     }
 });
 
-const Fixo = conexao.model("Fixo", fixoSchema);
+const Fixo = mongoose.model("Fixo", fixoSchema);
 
 export default Fixo;
