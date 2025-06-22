@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Escolher Quarto</title>
+    <style>
+        body {
+            background-color: #f8f4f0;
+            color: #5a3e36;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #8b4513;
+        }
+        .card {
+            background-color: #fffaf5;
+            border: 2px solid #a0522d;
+            border-radius: 12px;
+            padding: 20px;
+            width: 45%;
+            margin: 15px;
+            float: left;
+            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        form {
+            margin-top: 10px;
+        }
+        select, button {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #a0522d;
+        }
+        .btn {
+            background-color: #a0522d;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #8b4513;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Escolha o Tipo de Quarto 🍂</h1>
+
+        <% tiposDeQuarto.forEach(tipo => { %>
+            <div class="card">
+                <h2><%= tipo.nome %></h2>
+                <img src="<%= tipo.imagem %>" alt="<%= tipo.nome %>">
+                <p><%= tipo.descricao %></p>
+
+                <form action="/contrato/add" method="GET">
+                    <input type="hidden" name="tipquarto" value="<%= tipo.nome %>">
+                    <label>Andar:</label>
+                    <select name="andar" required>
+                        <% for(let i=1; i<=10; i++) { %>
+                            <option value="<%= i %>"><%= i %>º Andar</option>
+                        <% } %>
+                    </select>
+                    <button class="btn" type="submit">Selecionar 🍁</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
