@@ -1,5 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const conexao = mongoose.connect("mongodb+srv://jlemos:@Miraculous13@cluster0.rleqqp2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+const uri = "mongodb+srv://jlemos:Miraculous13@cluster0.rleqqp2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-export default conexao;
+async function conectar() {
+  try {
+    await mongoose.connect(uri);
+    console.log("Conectado ao MongoDB Atlas com sucesso!");
+  } catch (error) {
+    console.error("Erro na conexão:", error);
+    process.exit(1);
+  }
+}
+
+conectar();
+
+export default mongoose;
