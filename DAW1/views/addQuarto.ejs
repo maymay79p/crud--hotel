@@ -68,15 +68,16 @@
             <label>Andar:</label>
             <input type="text" name="andar" required>
 
-            <label>Tipo de Quarto:</label>
-            <select name="tipquarto" required>
-                <option value="">Selecione...</option>
-                <% tiposDeQuarto.forEach(tipo => { %>
-                    <option value="<%= tipo._id || tipo.nome %>">
-                        <%= tipo.nome %> - <%= tipo.descricao %>
-                    </option>
-                <% }) %>
+           <label>Tipo de Quarto:</label>
+                <select name="tipquarto" required>
+                 <option value="" disabled selected hidden>Selecione...</option>
+                      <% tiposDeQuarto.forEach(tipo => { %>
+                  <option value="<%= tipo._id %>">
+                 <%= tipo.nome %> - <%= tipo.descricao %>
+            </option>
+                     <% }) %>
             </select>
+
 
             <button class="btn" type="submit">Salvar</button>
         </form>
