@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const uri = "mongodb+srv://jlemos:Miraculous13@cluster0.rleqqp2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = await mongoose.connect("mongodb://aluno:<db_password>@cluster0-shard-00-00.luoxr.mongodb.net:27017,cluster0-shard-00-01.luoxr.mongodb.net:27017,cluster0-shard-00-02.luoxr.mongodb.net:27017/?ssl=true&replicaSet=atlas-liydtq-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0");
 
 async function conectar() {
   try {
