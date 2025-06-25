@@ -1,8 +1,12 @@
-import mongoose from 'mongoose';
+import conexao from "../config/conexao.js";
 
-const quartoSchema = new mongoose.Schema({
+const quartoSchema = new conexao.Schema({
     diaria: {
         type: Number,
+        required: true,
+    },
+    numero: {
+        type: String,
         required: true,
     },
     capacidade: {
@@ -14,12 +18,12 @@ const quartoSchema = new mongoose.Schema({
         required: true,
     },
     tipquarto: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: conexao.Schema.Types.ObjectId,
         ref: "Tipquarto",
         required: true,
     }
 });
 
-const Quarto = mongoose.model("Quarto", quartoSchema);
+const Quarto = conexao.model("Quarto", quartoSchema);
 
 export default Quarto;
