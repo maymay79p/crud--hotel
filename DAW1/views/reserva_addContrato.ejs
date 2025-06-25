@@ -66,7 +66,7 @@
                     <option 
                         value="<%= quarto._id %>" 
                         data-diaria="<%= quarto.diaria %>">
-                        Andar: <%= quarto.andar %> | Tipo: <%= quarto.tipquarto.nome || quarto.tipquarto %> | Capacidade: <%= quarto.capacidade %> | Diária: R$ <%= quarto.diaria.toFixed(2) %>
+                        Andar: <%= quarto.andar %> | N°: <%= quarto.numero %> | Tipo: <%= quarto.tipquarto.nome || quarto.tipquarto %> | Capacidade: <%= quarto.capacidade %> | Diária: R$ <%= quarto.diaria.toFixed(2) %>
                     </option>
                 <% }) %>
             </select>
@@ -81,6 +81,8 @@
             <input type="number" step="0.01" name="valor" id="valor" readonly required>
 
             <button class="btn" type="submit">Finalizar Reserva</button>
+             <a class="voltar" href="/tipquarto/lst">← Voltar para lista</a>
+            
         </form>
     </div>
 
@@ -106,7 +108,7 @@
             }
         }
 
-        selectQuarto.addEventListener('change', calcularValor);
+        selectQuarto.addEventListener('change', calcularValor)
         inputDataInicio.addEventListener('change', calcularValor);
         inputDataFim.addEventListener('change', calcularValor);
     </script>
