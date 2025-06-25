@@ -81,7 +81,7 @@ router.post('/contrato/add', addContrato);
 router.get('/contrato/lst', listarContrato);
 router.post('/contrato/lst', filtrarContrato);
 router.get('/contrato/edit/:id', abreEditContrato);
-router.post('/contrato/update/:id', editContrato);
+router.post('/contrato/edit/:id', editContrato);
 router.post('/contrato/delete/:id', deletarContrato);
 
 //TipQuarto
@@ -90,7 +90,7 @@ router.post('/tipquarto/add', addTipQuarto);
 router.get('/tipquarto/lst', listarTipQuarto);
 router.post('/tipquarto/lst', filtrarTipQuarto);
 router.get('/tipquarto/edit/:id', abreEditTipQuarto);
-router.post('/tipquarto/update/:id', editTipQuarto);
+router.post('/tipquarto/edit/:id', editTipQuarto);
 router.post('/tipquarto/delete/:id', deletarTipQuarto);
 
 //Quarto
@@ -99,7 +99,7 @@ router.post('/quarto/add', addQuarto);
 router.get('/quarto/lst', listarQuarto);
 router.post('/quarto/lst', filtrarQuarto);
 router.get('/quarto/edit/:id', abreEditQuarto);
-router.post('/quarto/update/:id', editQuarto);
+router.post('/quarto/edit/:id', editQuarto);
 router.post('/quarto/delete/:id', deletarQuarto);
 
 //Serviço
@@ -108,7 +108,7 @@ router.post('/servico/add', addServico);
 router.get('/servico/lst', listarServico);
 router.post('/servico/lst', filtrarServico);
 router.get('/servico/edit/:id', abreEditServico);
-router.post('/servico/update/:id', editServico);
+router.post('/servico/edit/:id', editServico);
 router.post('/servico/delete/:id', deletarServico);
 
 //Extra
@@ -117,7 +117,7 @@ router.post('/extra/add', addExtra);
 router.get('/extra/lst', listarExtra);
 router.post('/extra/lst', filtrarExtra);
 router.get('/extra/edit/:id', abreEditExtra);
-router.post('/extra/update/:id', editExtra);
+router.post('/extra/edit/:id', editExtra);
 router.post('/extra/delete/:id', deletarExtra);
 
 //Fixo
@@ -126,10 +126,11 @@ router.post('/fixo/add', addFixo);
 router.get('/fixo/lst', listarFixo);
 router.post('/fixo/lst', filtrarFixo);
 router.get('/fixo/edit/:id', abreEditFixo);
-router.post('/fixo/update/:id', editFixo);
+router.post('/fixo/edit/:id', editFixo);
 router.post('/fixo/delete/:id', deletarFixo);
 
 //Confirmção
 router.get('/contrato/ok', abreConfirmacao);
+
 
 export default router;
