@@ -6,7 +6,7 @@ export function abreAddCliente(req, res) {
 
 export async function addCliente(req, res) {
     await Cliente.create(req.body);
-    res.redirect("/clientes/add");
+    res.redirect("/cliente/add");
 }
 
 export async function listarCliente(req, res) {
@@ -27,12 +27,12 @@ export async function abreEditCliente(req, res) {
 
 export async function editCliente(req, res) {
     await Cliente.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/clientes/edit");
+    res.redirect("/cliente/lst");
 }
 
 export async function deletarCliente(req, res) {
     await Cliente.findByIdAndDelete(req.params.id);
-    res.redirect("/clientes/delete");
+    res.redirect("/cliente/delete/:id");
 }
 
 
@@ -48,7 +48,7 @@ export function abreAddTipQuarto(req, res) {
 
 export async function addTipQuarto(req, res) {
     await Tipquarto.create(req.body);
-    res.redirect("/tipquartos/add");
+    res.redirect("/tipquarto/add");
 }
 
 export async function listarTipQuarto(req, res) {
@@ -69,12 +69,12 @@ export async function abreEditTipQuarto(req, res) {
 
 export async function editTipQuarto(req, res) {
     await Tipquarto.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/tipquartos/edit");
+    res.redirect(`/tipquarto/edit/${req.params.id}`);
 }
 
 export async function deletarTipQuarto(req, res) {
     await Tipquarto.findByIdAndDelete(req.params.id);
-    res.redirect("/tipquartos/delete");
+    res.redirect("/tipquarto/lst");
 }
 
 //-------------------------------------------------------------Quarto//
@@ -110,7 +110,7 @@ export async function abreEditQuarto(req, res) {
 
 export async function editQuarto(req, res) {
     await Quarto.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/quarto/edit");
+    res.redirect(`/quarto/edit/${req.params.id}`);
 }
 
 export async function deletarQuarto(req, res) {
@@ -125,19 +125,21 @@ import Contrato from "../models/Contrato.js";
 
 export async function abreAddContrato(req, res) {
     const clientes = await Cliente.find();
-    const quartos = await Quarto.find();
-    res.render("reserva", { clientes, quartos });
+    const quartos = await Quarto.find().populate("tipquarto")
+    res.render("reserva_addContrato", { clientes, quartos });
 }
 
 export async function addContrato(req, res) {
     await Contrato.create(req.body);
-    res.redirect("/contratos");
+    res.redirect("/contrato/add");
 }
 
 export async function listarContrato(req, res) {
     const contratos = await Contrato.find()
         .populate("cliente")
-        .populate("quarto");
+        .populate({
+    path: 'quarto',
+    populate: { path: 'tipquarto' }});
     res.render("listarContrato", { contratos });
 }
 
@@ -160,16 +162,16 @@ export async function abreEditContrato(req, res) {
 
 export async function editContrato(req, res) {
     await Contrato.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/contratos");
+    res.redirect(`/contrato/edit/${req.params.id}`);
 }
 
 export async function deletarContrato(req, res) {
     await Contrato.findByIdAndDelete(req.params.id);
-    res.redirect("/contratos/delete");
+    res.redirect("/contrato/lst");
 }
 
 export async function abreConfirmacao(req, res) {
-    res.rnder("confirmacao_reserva");
+    res.render("confirmacao_reserva");
 }
 
 //-------------------------------------------------------------Servico//
@@ -182,7 +184,7 @@ export function abreAddServico(req, res) {
 
 export async function addServico(req, res) {
     await Servico.create(req.body);
-    res.redirect("/servicos/add");
+    res.redirect("/servico/add");
 }
 
 export async function listarServico(req, res) {
@@ -203,12 +205,12 @@ export async function abreEditServico(req, res) {
 
 export async function editServico(req, res) {
     await Servico.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/servicos");
+    res.redirect(`/servico/edit/${req.params.id}`);
 }
 
 export async function deletarServico(req, res) {
     await Servico.findByIdAndDelete(req.params.id);
-    res.redirect("/servicos");
+    res.redirect("/servico/lst");
 }
 
 
@@ -216,13 +218,18 @@ export async function deletarServico(req, res) {
 
 import Extra from "../models/Extra.js";
 
-export function abreAddExtra(req, res) {
-    res.render("addExtra");
-}
+export async function abreAddExtra(req, res) {
+        const contratos = await Contrato.find()
+            .populate("cliente")
+            .populate("quarto");
+        const servicos = await Servico.find();
+        res.render("addExtra", { contratos, servicos });
+    }
+
 
 export async function addExtra(req, res) {
     await Extra.create(req.body);
-    res.redirect("/extras");
+    res.redirect("/extra/add");
 }
 
 export async function listarExtra(req, res) {
@@ -243,12 +250,12 @@ export async function abreEditExtra(req, res) {
 
 export async function editExtra(req, res) {
     await Extra.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/extras");
+    res.redirect(`/extra/edit/${req.params.id}`);
 }
 
 export async function deletarExtra(req, res) {
     await Extra.findByIdAndDelete(req.params.id);
-    res.redirect("/extras");
+    res.redirect("/extra/lst");
 }
 
 
@@ -262,7 +269,7 @@ export function abreAddFixo(req, res) {
 
 export async function addFixo(req, res) {
     await Fixo.create(req.body);
-    res.redirect("/fixos");
+    res.redirect("/fixo/add");
 }
 
 export async function listarFixo(req, res) {
@@ -283,10 +290,10 @@ export async function abreEditFixo(req, res) {
 
 export async function editFixo(req, res) {
     await Fixo.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect("/fixos");
+    res.redirect(`/fixo/edit/${req.params.id}`);
 }
 
 export async function deletarFixo(req, res) {
     await Fixo.findByIdAndDelete(req.params.id);
-    res.redirect("/fixos");
+    res.redirect("/fixo/lst");
 }
