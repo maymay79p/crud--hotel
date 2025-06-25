@@ -2,7 +2,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    
     <title>Editar Tipo de Quarto</title>
     <style>
         body {
@@ -59,7 +58,7 @@
 <body>
     <div class="container">
         <h1>Editar Tipo de Quarto</h1>
-        <form action="/tipquarto/update/<%= tipquarto._id %>" method="POST">
+        <form action="/tipquarto/edit/<%= tipquarto._id %>" method="POST">
             <label>Nome:</label>
             <input type="text" name="nome" value="<%= tipquarto.nome %>" required>
 
@@ -69,6 +68,7 @@
             <button class="btn" type="submit">Salvar Alterações</button>
         </form>
         <a class="voltar" href="/tipquarto/lst">← Voltar para lista</a>
+        <a class="voltar" href="/">← Voltar a tela inicial</a>
     </div>
 </body>
 </html>
