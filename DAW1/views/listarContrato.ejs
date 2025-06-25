@@ -62,12 +62,34 @@
         form {
             display: inline;
         }
+        .form-filtro {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .add-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            background-color: #cd853f;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .add-link:hover {
+            background-color: #a0522d;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Lista de Contratos</h1>
+ <a class="add-link" href="/contrato/add">➕ Adicionar Cliente</a>
 
+        <form class="form-filtro" action="/contrato/lst" method="POST">
+            <input type="text" name="filtro" placeholder="Buscar por nome">
+            <button class="btn" type="submit">Buscar</button>
+        </form>
         <table>
             <tr>
                 <th>Cliente</th>
@@ -80,6 +102,7 @@
                 <tr>
                     <td><%= contrato.cliente.nome %></td>
                     <td>
+                        Numero:<%= contrato.quarto.numero %>
                         Tipo: <%= contrato.quarto.tipquarto.nome || contrato.quarto.tipquarto %> |
                         Andar: <%= contrato.quarto.andar %>
                     </td>
