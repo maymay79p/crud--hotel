@@ -65,7 +65,7 @@
 <body>
     <div class="container">
         <h1>Editar Reserva</h1>
-        <form action="/contrato/update/<%= contrato._id %>" method="POST">
+        <form action="/contrato/edit/<%= contrato._id %>" method="POST">
 
             <label>Cliente:</label>
             <select name="cliente" required>
@@ -95,6 +95,8 @@
             <input type="number" step="0.01" name="valor" value="<%= contrato.valor %>" required>
 
             <button class="btn" type="submit">Salvar Alterações</button>
+             <a class="voltar" href="/contrato/lst">← Voltar para lista</a>
+             <a class="voltar" href="/">← Voltar a tela inicial</a>
         </form>
     </div>
 </body>
