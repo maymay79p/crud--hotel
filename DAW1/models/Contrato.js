@@ -1,13 +1,13 @@
-import mongoose from 'mongoose';
+import conexao from "../config/conexao.js";
 
-const contratoSchema = new mongoose.Schema({
+const contratoSchema = new conexao.Schema({
     cliente: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: conexao.Schema.Types.ObjectId,
         ref: "Cliente",
         required: true
     },
     quarto: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: conexao.Schema.Types.ObjectId,
         ref: "Quarto",
         required: true
     },
@@ -23,13 +23,12 @@ const contratoSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    dataReserva: {
+      dataReserva: {
         type: Date,
         default: Date.now
     }
 });
 
-const Contrato = mongoose.model("Contrato", contratoSchema);
+const Contrato = conexao.model("Contrato", contratoSchema);
 
 export default Contrato;
-
