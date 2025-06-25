@@ -54,23 +54,7 @@
             margin: 20px auto;
         }
 
-        .hero button {
-            background-color: var(--laranja-folha);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .hero button:hover {
-            background-color: var(--caramelo);
-            transform: scale(1.05);
-        }
-
-        /* Sobre */
+     /* Sobre */
         .sobre {
             background-color: white;
             padding: 80px 20px;
@@ -90,6 +74,27 @@
             line-height: 1.8;
         }
 
+        .sobre2 {
+            background-color: white;
+            padding: 20px 20px;
+            text-align: center;
+        }
+
+        .sobre2 button{
+            background-color: var(--laranja-folha);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+       .sobre2 button:hover {
+            background-color: var(--caramelo);
+            transform: scale(1.05);
+       }
         /*Cards */
         .cards {
             display: flex;
@@ -131,7 +136,6 @@
             line-height: 1.5;
         }
 
-        /* Rodapé */
         footer {
             background-color: var(--marrom-escuro);
             color: var(--dourado);
@@ -151,39 +155,43 @@
     <section class="hero">
         <h1>Hotel Alpinia Palace</h1>
         <p>ESPACO DE GERENCIAMENTO</p>
-    <a href="/cliente/lst"><button >Gerenciar Clientes</button></a>
-    <a href="/contrato/lst"><button >Gerenciar Clientes</button></a> 
-    <a href="/tipquarto/lst"><button >Gerenciar Clientes</button></a>
-    <a href="/quarto/lst"><button >Gerenciar Clientes</button></a>
+    </section>
+
+
+        <section class="sobre2"><a href="/cliente/lst"><button >Gerenciar Clientes</button></a>
+    <a href="/contrato/lst"><button >Gerenciar Contratos</button></a> 
+    <a href="/tipquarto/lst"><button >Gerenciar Tipos de Quarto</button></a>
+    <a href="/quarto/lst"><button >Gerenciar Quarto</button></a>
     <a href="/servico/lst"><button >Gerenciar Serviços</button></a>
     <a href="/extra/lst"><button >Acessar Serviços Extras</button></a>
-    <a href="/Fixos/lst"><button >Acessar Serviços Fixos</button></a>
-    </section>
+    <a href="/fixo/lst"><button >Acessar Serviços Fixos</button></a></section>
 
-
-    <section class="sobre">
-        <h2>Bem-vindo ao Outono dos Seus Sonhos</h2>
-        <p>
-            No coração das montanhas, o Hotel Alpinia Palace oferece uma experiência única.
-            Imagine acordar com o som das folhas caindo, rodeado por paisagens douradas, 
-            desfrutando de acomodações elegantes, gastronomia requintada e momentos de puro relaxamento.
+    <section class="sobre">   
+        <h2>Bem-vindo à Temporada de Outono no Alpinia Palace</h2>
+        <p> O Outono chegou ao Hotel Alpinia Palace, trazendo consigo uma nova oportunidade de encantarmos nossos hóspedes com excelência, cuidado e hospitalidade.
+            </p>
+<p>Em meio às montanhas douradas e ao clima acolhedor da estação, cada detalhe conta. 
+Seu trabalho faz parte da experiência que transforma a estadia de nossos visitantes em algo memorável. 
+Seja na recepção calorosa, na organização impecável dos quartos ou no atendimento atencioso, você é essencial para o sucesso desta temporada.
+Vamos juntos oferecer um outono dos sonhos — com dedicação, profissionalismo e o charme que só o Alpinia Palace tem. 
         </p>
-    </section>
+</section>
 
-    
+
+
     <section class="cards">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3" alt="Quartos">
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3" alt="Eventos">
             <h3>Eventos</h3>
             <p>Acompanhe o calendario do Hotel.</p>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1600891963933-96053a43f4e7" alt="Gastronomia">
+            <img src="https://images.unsplash.com/photo-1600891963933-96053a43f4e7" alt="Cuidados">
             <h3>Cuidados Especiais</h3>
             <p>Endenda as necessidades dos clientes.</p>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6" alt="Atividades">
+            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6" alt="Horarios">
             <h3>Horarios</h3>
             <p>Acompanhe o roteiro do seu dia.</p>
         </div>
