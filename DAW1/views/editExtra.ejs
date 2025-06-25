@@ -19,7 +19,7 @@
 <body>
     <div class="container">
         <h1>Editar Extra</h1>
-        <form action="/extra/update/<%= extra._id %>" method="POST">
+        <form action="/extra/edit/<%= extra._id %>" method="POST">
             <label>Contrato:</label>
             <select name="contrato" required>
                 <% contratos.forEach(contrato => { %>
@@ -45,6 +45,8 @@
             <input type="number" step="0.01" name="valor_extra" value="<%= extra.valor_extra %>" required>
 
             <button class="btn" type="submit">Salvar Alterações</button>
+            <a class="voltar" href="/extra/lst">← Voltar para lista</a>
+            <a class="voltar" href="/">← Voltar a tela inicial</a>
         </form>
     </div>
 </body>
