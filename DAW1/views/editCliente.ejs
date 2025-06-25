@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+
     
     <title>Editar Cliente</title>
     <style>
@@ -59,7 +60,7 @@
 <body>
     <div class="container">
         <h1>Editar Cliente </h1>
-        <form action="/cliente/update/<%= cliente._id %>" method="POST">
+        <form action="/cliente/edit/<%= cliente._id %>" method="POST">
             <label>Nome:</label>
             <input type="text" name="nome" value="<%= cliente.nome %>" required>
 
@@ -78,6 +79,7 @@
             <button class="btn" type="submit">Salvar Alterações</button>
         </form>
         <a class="voltar" href="/cliente/lst">← Voltar para lista</a>
+        <a class="voltar" href="/">← Voltar a tela inicial</a>
     </div>
 </body>
 </html>
