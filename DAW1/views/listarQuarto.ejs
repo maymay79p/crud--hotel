@@ -11,12 +11,12 @@
         }
         .container {
             width: 90%;
-            max-width: 1000px;
-            margin: 30px auto;
+            margin: 40px auto;
             background-color: #fffaf5;
-            padding: 20px;
+            padding: 25px;
             border-radius: 14px;
-            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
+            box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
+            border: 2px solid #a0522d;
         }
         h1 {
             text-align: center;
@@ -90,6 +90,7 @@
         <table>
             <tr>
                 <th>Diária (R$)</th>
+                <th>Número</th>
                 <th>Capacidade</th>
                 <th>Andar</th>
                 <th>Tipo de Quarto</th>
@@ -98,6 +99,7 @@
             <% quartos.forEach(quarto => { %>
                 <tr>
                     <td><%= quarto.diaria.toFixed(2) %></td>
+                    <td><%= quarto.numero %></td>
                     <td><%= quarto.capacidade %></td>
                     <td><%= quarto.andar %></td>
                     <td><%= quarto.tipquarto.nome || quarto.tipquarto %></td>
