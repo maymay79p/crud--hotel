@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista de Extras</title>
     <style>
-        body { background-color: #f6eee3; color: #5a3e36; font-family: 'Segoe UI', sans-serif; }
-        .container { width: 90%;
+        body {
+            background-color: #f6eee3;
+            color: #5a3e36;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            width: 90%;
             width: 90%;
             margin: 40px auto;
             background-color: #fffaf5;
@@ -15,22 +22,65 @@
             border: 2px solid #a0522d;
         }
 
-        h1 { text-align: center; color: #8b4513; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; background-color: #fffdfb; }
-        th, td { border: 2px solid #a0522d; padding: 12px 15px; text-align: center; }
-        th { background-color: #cd853f; color: white; font-weight: bold; }
-        tr:nth-child(even) { background-color: #fef7f1; }
-        tr:hover { background-color: #f5e5d8; }
+        h1 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fffdfb;
+        }
+
+        th,
+        td {
+            border: 2px solid #a0522d;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #cd853f;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fef7f1;
+        }
+
+        tr:hover {
+            background-color: #f5e5d8;
+        }
+
         .form-filtro {
             margin-bottom: 15px;
             text-align: center;
         }
-        .btn { background-color: #a0522d; color: white; padding: 8px 14px; border: none;
-            border-radius: 8px; text-decoration: none; cursor: pointer; transition: background-color 0.3s; }
-        .btn:hover { background-color: #8b4513; }
-        form { display: inline; }
+
+        .btn {
+            background-color: #a0522d;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #8b4513;
+        }
+
+        form {
+            display: inline;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Lista de Extras</h1>
@@ -49,15 +99,21 @@
                 <th>Valor Total (R$)</th>
                 <th>Ações</th>
             </tr>
-            <% extras.forEach(extra => { %>
+            <% extras.forEach(extra=> { %>
                 <tr>
                     <td>
                         Cliente: <%= extra.contrato.cliente.nome %> <br>
-                        Quarto: <%= extra.contrato.quarto.tipquarto.nome || extra.contrato.quarto.tipquarto %> - Andar <%= extra.contrato.quarto.andar %>
+                            Quarto: <%= extra.contrato.quarto.numero %>|
+                                Andar <%= extra.contrato.quarto.andar %>
                     </td>
-                    <td><%= extra.servico.descricao %></td>
-                    <td><%= extra.quantidade %></td>
-                    <td>R$ <%= extra.valor_extra.toFixed(2) %></td>
+                    <td>
+                        <%= extra.servico.descricao %>
+                    </td>
+                    <td>
+                        <%= extra.quantidade %>
+                    </td>
+                    <td>R$ <%= extra.valor_total.toFixed(2) %>
+                    </td>
                     <td>
                         <a class="btn" href="/extra/edit/<%= extra._id %>">Editar</a>
                         <form action="/extra/delete/<%= extra._id %>" method="POST">
@@ -65,8 +121,9 @@
                         </form>
                     </td>
                 </tr>
-            <% }) %>
+                <% }) %>
         </table>
     </div>
 </body>
+
 </html>
