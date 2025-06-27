@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista de Tipos de Quarto</title>
@@ -9,6 +10,7 @@
             color: #5a3e36;
             font-family: Arial, sans-serif;
         }
+
         .container {
             width: 90%;
             margin: 40px auto;
@@ -18,27 +20,34 @@
             box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
             border: 2px solid #a0522d;
         }
+
         h1 {
             text-align: center;
             color: #a0522d;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #a0522d;
             padding: 10px;
             text-align: center;
         }
+
         th {
             background-color: #cd853f;
             color: white;
         }
+
         tr:nth-child(even) {
             background-color: #fffaf5;
         }
+
         .btn {
             background-color: #cd853f;
             color: white;
@@ -48,13 +57,16 @@
             cursor: pointer;
             margin: 2px;
         }
+
         .btn:hover {
             background-color: #a0522d;
         }
+
         .form-filtro {
             margin-bottom: 15px;
             text-align: center;
         }
+
         input[type="text"] {
             padding: 6px;
             border-radius: 6px;
@@ -62,6 +74,7 @@
             width: 200px;
             background-color: #fffaf5;
         }
+
         .add-link {
             display: inline-block;
             margin-bottom: 10px;
@@ -71,11 +84,13 @@
             border-radius: 8px;
             text-decoration: none;
         }
+
         .add-link:hover {
             background-color: #a0522d;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Lista de Tipos de Quarto</h1>
@@ -93,10 +108,14 @@
                 <th>Descrição</th>
                 <th>Ações</th>
             </tr>
-            <% tipquartos.forEach(tipquarto => { %>
+            <% tipquartos.forEach(tipquarto=> { %>
                 <tr>
-                    <td><%= tipquarto.nome %></td>
-                    <td><%= tipquarto.descricao %></td>
+                    <td>
+                        <%= tipquarto.nome %>
+                    </td>
+                    <td>
+                        <%= tipquarto.descricao %>
+                    </td>
                     <td>
                         <a class="btn" href="/tipquarto/edit/<%= tipquarto._id %>">Editar</a>
                         <form style="display:inline;" action="/tipquarto/delete/<%= tipquarto._id %>" method="POST">
@@ -104,8 +123,9 @@
                         </form>
                     </td>
                 </tr>
-            <% }) %>
+                <% }) %>
         </table>
     </div>
 </body>
+
 </html>
