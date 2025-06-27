@@ -2,49 +2,73 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Fixo</title>
+    <title>Lista de Serviços Fixos</title>
     <style>
-        body { background-color: #f6eee3; color: #5a3e36; font-family: 'Segoe UI', sans-serif; }
-        .container { width: 500px; margin: 50px auto; background-color: #fffaf5; padding: 30px;
-            border-radius: 14px; box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3); border: 2px solid #a0522d; }
-        h1 { text-align: center; color: #8b4513; }
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        select, input { width: 100%; padding: 10px; border: 2px solid #a0522d;
-            border-radius: 10px; background-color: #fffdfb; }
-        .btn { margin-top: 25px; width: 100%; background-color: #a0522d; color: white;
-            border: none; padding: 12px; border-radius: 10px; cursor: pointer; }
+        body { 
+            background-color: #f6eee3; 
+            color: #5a3e36; 
+            font-family: 'Segoe UI', sans-serif; 
+        }
+        .container { 
+            width: 90%;
+            margin: 40px auto;
+            background-color: #fffaf5;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
+            border: 2px solid #a0522d;
+        }
+        
+        h1 { text-align: center; color: #8b4513; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background-color: #fffdfb; }
+        th, td { border: 2px solid #a0522d; padding: 12px 15px; text-align: center; }
+        th { background-color: #cd853f; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #fef7f1; }
+        tr:hover { background-color: #f5e5d8; }
+        .btn { background-color: #a0522d; color: white; padding: 8px 14px; border: none;
+            border-radius: 8px; text-decoration: none; cursor: pointer; transition: background-color 0.3s; }
         .btn:hover { background-color: #8b4513; }
+        form { display: inline; }
+        .form-filtro {
+            margin-bottom: 15px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Editar Serviço Fixo</h1>
-        <form action="/fixo/edit/<%= fixo._id %>" method="POST">
-            <label>Quarto:</label>
-            <select name="quarto" required>
-                <% quartos.forEach(quarto => { %>
-                    <option value="<%= quarto._id %>" <%= fixo.quarto.equals(quarto._id) ? 'selected' : '' %>>
-                        Andar: <%= quarto.andar %> | Tipo: <%= quarto.tipquarto.nome || quarto.tipquarto %>
-                    </option>
-                <% }) %>
-            </select>
+        <h1>Lista de Serviços Fixos</h1>
 
-            <label>Serviço:</label>
-            <select name="servico" required>
-                <% servicos.forEach(servico => { %>
-                    <option value="<%= servico._id %>" <%= fixo.servico.equals(servico._id) ? 'selected' : '' %>>
-                        <%= servico.descricao %>
-                    </option>
-                <% }) %>
-            </select>
-
-            <label>Descrição do Serviço:</label>
-            <input type="text" name="Descricao" value="<%= fixo.Descricao %>" required>
-
-            <button class="btn" type="submit">Salvar Alterações</button>
-             <a class="voltar" href="/fixo/lst">← Voltar para lista</a>
-             <a class="voltar" href="/">← Voltar a tela inicial</a>
+        <form form class="form-filtro" action="/fixo/lst" method="POST">
+            <input type="text" name="filtro" placeholder="Buscar...">
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn" href="/fixo/add">➕ Novo Fixo</a>
         </form>
+
+        <table>
+            <tr>
+                <th>Quarto</th>
+                <th>Serviço</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+            <% fixos.forEach(fixo => { %>
+                <tr>
+                    <td>
+                        Tipo: <%= fixo.quarto.tipquarto.nome || fixo.quarto.tipquarto %> <br>
+                        Andar: <%= fixo.quarto.andar %>
+                    </td>
+                    <td><%= fixo.servico.descricao %></td>
+                    <td><%= fixo.Descricao %></td>
+                    <td>
+                        <a class="btn" href="/fixo/edit/<%= fixo._id %>">Editar</a>
+                        <form action="/fixo/delete/<%= fixo._id %>" method="POST">
+                            <button class="btn" type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
     </div>
 </body>
 </html>
