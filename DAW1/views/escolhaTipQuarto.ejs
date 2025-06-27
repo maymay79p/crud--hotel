@@ -2,78 +2,73 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Escolher Quarto</title>
+    <title>Editar Tipo de Quarto</title>
     <style>
         body {
-            background-color: #f8f4f0;
+            background-color: #f9f5f0;
             color: #5a3e36;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: Arial, sans-serif;
         }
         .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 30px auto;
+            width: 500px;
+            margin: 50px auto;
+            background-color: #fff7f0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(90, 62, 54, 0.3);
         }
         h1 {
             text-align: center;
-            color: #8b4513;
+            color: #a0522d;
         }
-        .card {
-            background-color: #fffaf5;
-            border: 2px solid #a0522d;
-            border-radius: 12px;
-            padding: 20px;
-            width: 45%;
-            margin: 15px;
-            float: left;
-            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
         }
-        img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        form {
-            margin-top: 10px;
-        }
-        select, button {
+        input, textarea {
             width: 100%;
             padding: 8px;
-            border-radius: 8px;
             border: 1px solid #a0522d;
+            border-radius: 8px;
+            background-color: #fffaf5;
         }
         .btn {
-            background-color: #a0522d;
+            margin-top: 20px;
+            width: 100%;
+            background-color: #cd853f;
             color: white;
-            cursor: pointer;
             border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
         }
         .btn:hover {
-            background-color: #8b4513;
+            background-color: #a0522d;
+        }
+        .voltar {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #5a3e36;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Escolha o Tipo de Quarto 🍂</h1>
+        <h1>Editar Tipo de Quarto</h1>
+        <form action="/tipquarto/edit/<%= tipquarto._id %>" method="POST">
+            <label>Nome:</label>
+            <input type="text" name="nome" value="<%= tipquarto.nome %>" required>
 
-        <% tiposDeQuarto.forEach(tipo => { %>
-            <div class="card">
-                <h2><%= tipo.nome %></h2>
-                <img src="<%= tipo.imagem %>" alt="<%= tipo.nome %>">
-                <p><%= tipo.descricao %></p>
+            <label>Descrição:</label>
+            <textarea name="descricao" rows="4" required><%= tipquarto.descricao %></textarea>
 
-                <form action="/contrato/add" method="GET">
-                    <input type="hidden" name="tipquarto" value="<%= tipo.nome %>">
-                    <label>Andar:</label>
-                    <select name="andar" required>
-                        <% for(let i=1; i<=10; i++) { %>
-                            <option value="<%= i %>"><%= i %>º Andar</option>
-                        <% } %>
-                    </select>
-                    <button class="btn" type="submit">Selecionar 🍁</button>
-                </form>
-            </div>
-        <% }) %>
+            <button class="btn" type="submit">Salvar Alterações</button>
+        </form>
+        <a class="voltar" href="/tipquarto/lst">← Voltar para lista</a>
+        <a class="voltar" href="/">← Voltar a tela inicial</a>
     </div>
 </body>
 </html>
