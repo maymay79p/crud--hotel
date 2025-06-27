@@ -59,7 +59,7 @@ export async function listarTipQuarto(req, res) {
 export async function filtrarTipQuarto(req, res) {
     const filtro = req.body.filtro;
     const tipquartos = await Tipquarto.find({ nome: { $regex: filtro, $options: "i" } });
-    res.render("listarTipQuarto", { tipquartos });
+    res.render("listarTipquarto", { tipquartos });
 }
 
 export async function abreEditTipQuarto(req, res) {
@@ -233,7 +233,15 @@ export async function addExtra(req, res) {
 }
 
 export async function listarExtra(req, res) {
-    const extras = await Extra.find().populate("contrato").populate("servico");
+    const extras = await Extra.find()
+        .populate({
+            path: "contrato",
+            populate: [
+                { path: "cliente" },
+                { path: "quarto" }
+            ]
+        })
+        .populate("servico");
     res.render("listarExtra", { extras });
 }
 
@@ -245,7 +253,16 @@ export async function filtrarExtra(req, res) {
 
 export async function abreEditExtra(req, res) {
     const extra = await Extra.findById(req.params.id);
-    res.render("editExtra", { extra });
+
+    const contratos = await Contrato.find()
+        .populate("cliente")
+        .populate({
+            path: "quarto",
+            populate: { path: "tipquarto" }
+        });
+    const servicos = await Servico.find();
+
+    res.render("editExtra", { extra, contratos, servicos });
 }
 
 export async function editExtra(req, res) {
