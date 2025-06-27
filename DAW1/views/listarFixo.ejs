@@ -25,10 +25,32 @@
         th { background-color: #cd853f; color: white; font-weight: bold; }
         tr:nth-child(even) { background-color: #fef7f1; }
         tr:hover { background-color: #f5e5d8; }
-        .btn { background-color: #a0522d; color: white; padding: 8px 14px; border: none;
-            border-radius: 8px; text-decoration: none; cursor: pointer; transition: background-color 0.3s; }
-        .btn:hover { background-color: #8b4513; }
-        form { display: inline; }
+        
+         .add-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            background-color: #cd853f;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-link:hover {
+            background-color: #a0522d;
+        }
+         .btn {
+            background-color: #cd853f;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .btn:hover {
+            background-color: #a0522d;
+        }
         .form-filtro {
             margin-bottom: 15px;
             text-align: center;
@@ -38,11 +60,12 @@
 <body>
     <div class="container">
         <h1>Lista de Serviços Fixos</h1>
+<a class="add-link" href="/fixo/add">➕ Novo Fixo</a>
 
         <form form class="form-filtro" action="/fixo/lst" method="POST">
             <input type="text" name="filtro" placeholder="Buscar...">
             <button class="btn" type="submit">Buscar</button>
-            <a class="btn" href="/fixo/add">➕ Novo Fixo</a>
+            
         </form>
 
         <table>
@@ -55,7 +78,7 @@
             <% fixos.forEach(fixo => { %>
                 <tr>
                     <td>
-                        Tipo: <%= fixo.quarto.tipquarto.nome || fixo.quarto.tipquarto %> <br>
+                        N°: <%= fixo.quarto.numero %> <br>
                         Andar: <%= fixo.quarto.andar %>
                     </td>
                     <td><%= fixo.servico.descricao %></td>
