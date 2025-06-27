@@ -2,47 +2,83 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Adicionar Fixo</title>
+
+    <title>Adicionar Cliente</title>
     <style>
-        body { background-color: #f6eee3; color: #5a3e36; font-family: 'Segoe UI', sans-serif; }
-        .container { width: 500px; margin: 50px auto; background-color: #fffaf5; padding: 30px;
-            border-radius: 14px; box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3); border: 2px solid #a0522d; }
-        h1 { text-align: center; color: #8b4513; }
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        select, input { width: 100%; padding: 10px; border: 2px solid #a0522d;
-            border-radius: 10px; background-color: #fffdfb; }
-        .btn { margin-top: 25px; width: 100%; background-color: #a0522d; color: white;
-            border: none; padding: 12px; border-radius: 10px; cursor: pointer; }
-        .btn:hover { background-color: #8b4513; }
+        body {
+            background-color: #f5cfb6;
+            color: #5a3e36;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background-color: #fff7f0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(90, 62, 54, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #a0522d;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a0522d;
+            border-radius: 8px;
+            background-color: #fffaf5;
+        }
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #cd853f;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #a0522d;
+        }
+        .voltar {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #5a3e36;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Adicionar Serviço Fixo</h1>
-        <form action="/fixo/add" method="POST">
-            <label>Quarto:</label>
-            <select name="quarto" required>
-                <% quartos.forEach(quarto => { %>
-                    <option value="<%= quarto._id %>">
-                        Andar: <%= quarto.andar %> | Tipo: <%= quarto.tipquarto.nome || quarto.tipquarto %>
-                    </option>
-                <% }) %>
-            </select>
+        <h1>Adicionar Cliente </h1>
+        <form action="/cliente/add" method="POST">
+            <label>Nome:</label>
+            <input type="text" name="nome" required>
 
-            <label>Serviço:</label>
-            <select name="servico" required>
-                <% servicos.forEach(servico => { %>
-                    <option value="<%= servico._id %>"><%= servico.descricao %></option>
-                <% }) %>
-            </select>
+            <label>Data de Nascimento:</label>
+            <input type="date" name="dataNascimento" required>
 
-            <label>Descrição do Serviço:</label>
-            <input type="text" name="Descricao" required>
+            <label>Endereço:</label>
+            <input type="text" name="endereco" required>
 
-            <button class="btn" type="submit">Adicionar Fixo</button>
-            <a class="voltar" href="/fixo/lst">← Voltar para lista</a>
-        <a class="voltar" href="/">← Voltar a tela inicial</a>
+            <label>Telefone:</label>
+            <input type="text" name="telefone" required>
+
+            <label>CPF:</label>
+            <input type="text" name="cpf" required>
+
+            <button class="btn" type="submit">Salvar</button>
         </form>
+        <a class="voltar" href="/cliente/lst">← Voltar para lista</a>
+        <a class="voltar" href="/">← Voltar a tela inicial</a>
     </div>
 </body>
 </html>
