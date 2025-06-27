@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista de Contratos</title>
@@ -9,6 +10,7 @@
             color: #5a3e36;
             font-family: 'Segoe UI', sans-serif;
         }
+
         .container {
             width: 90%;
             margin: 40px auto;
@@ -18,33 +20,41 @@
             box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
             border: 2px solid #a0522d;
         }
+
         h1 {
             text-align: center;
             color: #8b4513;
             margin-bottom: 20px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             background-color: #fffdfb;
         }
-        th, td {
+
+        th,
+        td {
             border: 2px solid #a0522d;
             padding: 12px 15px;
             text-align: center;
         }
+
         th {
             background-color: #cd853f;
             color: white;
             font-weight: bold;
             letter-spacing: 1px;
         }
+
         tr:nth-child(even) {
             background-color: #fef7f1;
         }
+
         tr:hover {
             background-color: #f5e5d8;
         }
+
         .btn {
             background-color: #a0522d;
             color: white;
@@ -56,16 +66,20 @@
             transition: background-color 0.3s;
             display: inline-block;
         }
+
         .btn:hover {
             background-color: #8b4513;
         }
+
         form {
             display: inline;
         }
+
         .form-filtro {
             margin-bottom: 15px;
             text-align: center;
         }
+
         .add-link {
             display: inline-block;
             margin-bottom: 10px;
@@ -75,16 +89,17 @@
             border-radius: 8px;
             text-decoration: none;
         }
+
         .add-link:hover {
             background-color: #a0522d;
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Lista de Contratos</h1>
- <a class="add-link" href="/contrato/add">➕ Adicionar Cliente</a>
+        <a class="add-link" href="/contrato/add">➕ Adicionar Reserva</a>
 
         <form class="form-filtro" action="/contrato/lst" method="POST">
             <input type="text" name="filtro" placeholder="Buscar por nome">
@@ -98,16 +113,22 @@
                 <th>Valor (R$)</th>
                 <th>Ações</th>
             </tr>
-            <% contratos.forEach(contrato => { %>
+            <% contratos.forEach(contrato=> { %>
                 <tr>
-                    <td><%= contrato.cliente.nome %></td>
                     <td>
-                        Numero:<%= contrato.quarto.numero %>
-                        Tipo: <%= contrato.quarto.tipquarto.nome || contrato.quarto.tipquarto %> |
-                        Andar: <%= contrato.quarto.andar %>
+                        <%= contrato.cliente.nome %>
                     </td>
-                    <td><%= contrato.data_inicio.toLocaleDateString() %> até <%= contrato.data_fim.toLocaleDateString() %></td>
-                    <td>R$ <%= contrato.valor.toFixed(2) %></td>
+                    <td>
+                        Numero:<%= contrato.quarto.numero %> |
+                            Tipo: <%= contrato.quarto.tipquarto.nome || contrato.quarto.tipquarto %> |
+                                Andar: <%= contrato.quarto.andar %>
+                    </td>
+                    <td>
+                        <%= contrato.data_inicio.toLocaleDateString() %> até <%= contrato.data_fim.toLocaleDateString()
+                                %>
+                    </td>
+                    <td>R$ <%= contrato.valor.toFixed(2) %>
+                    </td>
                     <td>
                         <a class="btn" href="/contrato/edit/<%= contrato._id %>">Editar</a>
                         <form action="/contrato/delete/<%= contrato._id %>" method="POST">
@@ -115,8 +136,9 @@
                         </form>
                     </td>
                 </tr>
-            <% }) %>
+                <% }) %>
         </table>
     </div>
 </body>
+
 </html>
