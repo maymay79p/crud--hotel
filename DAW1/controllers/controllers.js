@@ -280,10 +280,11 @@ export async function deletarExtra(req, res) {
 
 import Fixo from "../models/Fixo.js";
 
-export function abreAddFixo(req, res) {
-    res.render("addFixo");
+export async function abreAddFixo(req, res) {
+  const quartos = await Quarto.find().populate("tipquarto");
+  const servicos = await Servico.find();
+  res.render("addFixo", { quartos, servicos });
 }
-
 export async function addFixo(req, res) {
     await Fixo.create(req.body);
     res.redirect("/fixo/add");
