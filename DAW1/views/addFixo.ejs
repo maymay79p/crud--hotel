@@ -24,7 +24,7 @@
             <select name="quarto" required>
                 <% quartos.forEach(quarto => { %>
                     <option value="<%= quarto._id %>">
-                        Andar: <%= quarto.andar %> | Tipo: <%= quarto.tipquarto.nome || quarto.tipquarto %>
+                        Andar: <%= quarto.andar %> | Tipo: <%= quarto.tipquarto.nome || quarto.tipquarto %>| N°: <%= quarto.numero %>
                     </option>
                 <% }) %>
             </select>
