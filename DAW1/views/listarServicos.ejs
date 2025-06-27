@@ -1,122 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Serviços</title>
+    <title>Editar Quarto</title>
     <style>
         body {
-            background-color: #f6eee3;
+            background-color: #f8f4f0;
             color: #5a3e36;
             font-family: 'Segoe UI', sans-serif;
         }
-
         .container {
-            width: 90%;
-            margin: 40px auto;
+            width: 500px;
+            margin: 50px auto;
             background-color: #fffaf5;
-            padding: 25px;
+            padding: 30px;
             border-radius: 14px;
-            box-shadow: 0 8px 20px rgba(90, 62, 54, 0.3);
-            border: 2px solid #a0522d;
+            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
         }
-
         h1 {
             text-align: center;
             color: #8b4513;
-            margin-bottom: 20px;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fffdfb;
-        }
-
-        th,
-        td {
-            border: 2px solid #a0522d;
-            padding: 12px 15px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #cd853f;
-            color: white;
+        label {
+            display: block;
+            margin-top: 15px;
             font-weight: bold;
         }
-
-        tr:nth-child(even) {
-            background-color: #fef7f1;
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #8b4513;
+            border-radius: 8px;
+            background-color: #fffdfb;
         }
-
-        tr:hover {
-            background-color: #f5e5d8;
-        }
-
-        .form-filtro {
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
         .btn {
+            margin-top: 20px;
+            width: 100%;
             background-color: #a0522d;
             color: white;
-            padding: 8px 14px;
             border: none;
+            padding: 10px;
             border-radius: 8px;
-            text-decoration: none;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-
         .btn:hover {
             background-color: #8b4513;
         }
-
-        form {
-            display: inline;
+        .voltar {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #5a3e36;
+            text-decoration: none;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
-        <h1>Lista de Serviços</h1>
+        <h1>Editar Quarto</h1>
+        <form action="/quarto/edit/<%= quarto._id %>" method="POST">
+            <label>Diária (R$):</label>
+            <input type="number" name="diaria" value="<%= quarto.diaria %>" step="0.01" required>
 
-        <form form class="form-filtro" action="/servico/lst" method="POST">
-            <input type="text" name="filtro" placeholder="Buscar por descrição...">
-            <button class="btn" type="submit">Buscar</button>
-            <a class="btn" href="/servico/add">➕ Novo Serviço</a>
-        </form>
+            <label>Número:</label>
+            <input type="text" name="numero" value="<% quarto.numero %>">
 
-        <table>
-            <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Média de Valor (R$)</th>
-                <th>Ações</th>
-            </tr>
-            <% servicos.forEach(servico=> { %>
-                <tr>
-                    <td>
-                        <%= servico.nome %>
-                    </td>
-                    <td>
-                        <%= servico.descricao %>
-                    </td>
-                    <td>R$ <%= servico.mediaValor.toFixed(2) %>
-                    </td>
-                    <td>
-                        <a class="btn" href="/servico/edit/<%= servico._id %>">Editar</a>
-                        <form action="/servico/delete/<%= servico._id %>" method="POST">
-                            <button class="btn" type="submit">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
+            <label>Capacidade:</label>
+            <input type="text" name="capacidade" value="<%= quarto.capacidade %>" required>
+
+            <label>Andar:</label>
+            <input type="text" name="andar" value="<%= quarto.andar %>" required>
+
+            <label>Tipo de Quarto:</label>
+            <select name="tipquarto" required>
+                <option value="">Selecione...</option>
+                <% tiposBanco.forEach(tipo => { %>
+                    <option value="<%= tipo._id || tipo.nome %>" 
+                        <%= (quarto.tipquarto.equals(tipo._id) || quarto.tipquarto === tipo.nome) ? 'selected' : '' %>>
+                        <%= tipo.nome %> - <%= tipo.descricao %>
+                    </option>
                 <% }) %>
-        </table>
+            </select>
+
+            <button class="btn" type="submit">Salvar Alterações</button>
+        </form>
+        <a class="voltar" href="/quarto/lst">← Voltar para lista</a>
+        <a class="voltar" href="/">← Voltar a tela inicial</a>
     </div>
 </body>
-
 </html>
