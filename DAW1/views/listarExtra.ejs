@@ -60,19 +60,31 @@
             text-align: center;
         }
 
-        .btn {
-            background-color: #a0522d;
+ .add-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            background-color: #cd853f;
             color: white;
-            padding: 8px 14px;
-            border: none;
+            padding: 8px 12px;
             border-radius: 8px;
             text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
 
+        .add-link:hover {
+            background-color: #a0522d;
+        }
+
+         .btn {
+            background-color: #cd853f;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 2px;
+        }
         .btn:hover {
-            background-color: #8b4513;
+            background-color: #a0522d;
         }
 
         form {
@@ -84,11 +96,11 @@
 <body>
     <div class="container">
         <h1>Lista de Extras</h1>
+ <a class="add-link" href="/extra/add">➕ Novo Extra</a>
 
         <form form class="form-filtro" action="/extra/lst" method="POST">
             <input type="text" name="filtro" placeholder="Buscar...">
             <button class="btn" type="submit">Buscar</button>
-            <a class="btn" href="/extra/add">➕ Novo Extra</a>
         </form>
 
         <table>
@@ -104,7 +116,7 @@
                     <td>
                         Cliente: <%= extra.contrato.cliente.nome %> <br>
                             Quarto: <%= extra.contrato.quarto.numero %>|
-                                Andar <%= extra.contrato.quarto.andar %>
+                                Andar: <%= extra.contrato.quarto.andar %>
                     </td>
                     <td>
                         <%= extra.servico.descricao %>
