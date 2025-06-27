@@ -2,41 +2,41 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Quarto</title>
+    <title>Editar Tipo de Quarto</title>
     <style>
         body {
-            background-color: #f8f4f0;
+            background-color: #f9f5f0;
             color: #5a3e36;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: Arial, sans-serif;
         }
         .container {
             width: 500px;
             margin: 50px auto;
-            background-color: #fffaf5;
+            background-color: #fff7f0;
             padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 5px 12px rgba(90, 62, 54, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(90, 62, 54, 0.3);
         }
         h1 {
             text-align: center;
-            color: #8b4513;
+            color: #a0522d;
         }
         label {
             display: block;
             margin-top: 15px;
             font-weight: bold;
         }
-        input, select {
+        input, textarea {
             width: 100%;
             padding: 8px;
-            border: 1px solid #8b4513;
+            border: 1px solid #a0522d;
             border-radius: 8px;
-            background-color: #fffdfb;
+            background-color: #fffaf5;
         }
         .btn {
             margin-top: 20px;
             width: 100%;
-            background-color: #a0522d;
+            background-color: #cd853f;
             color: white;
             border: none;
             padding: 10px;
@@ -44,7 +44,7 @@
             cursor: pointer;
         }
         .btn:hover {
-            background-color: #8b4513;
+            background-color: #a0522d;
         }
         .voltar {
             display: block;
@@ -57,34 +57,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Editar Quarto</h1>
-        <form action="/quarto/edit/<%= quarto._id %>" method="POST">
-            <label>Diária (R$):</label>
-            <input type="number" name="diaria" value="<%= quarto.diaria %>" step="0.01" required>
+        <h1>Editar Tipo de Quarto</h1>
+        <form action="/tipquarto/edit/<%= tipquarto._id %>" method="POST">
+            <label>Nome:</label>
+            <input type="text" name="nome" value="<%= tipquarto.nome %>" required>
 
-            <label>Número:</label>
-            <input type="text" name="numero" value="<% quarto.numero %>">
-
-            <label>Capacidade:</label>
-            <input type="text" name="capacidade" value="<%= quarto.capacidade %>" required>
-
-            <label>Andar:</label>
-            <input type="text" name="andar" value="<%= quarto.andar %>" required>
-
-            <label>Tipo de Quarto:</label>
-            <select name="tipquarto" required>
-                <option value="">Selecione...</option>
-                <% tiposBanco.forEach(tipo => { %>
-                    <option value="<%= tipo._id || tipo.nome %>" 
-                        <%= (quarto.tipquarto.equals(tipo._id) || quarto.tipquarto === tipo.nome) ? 'selected' : '' %>>
-                        <%= tipo.nome %> - <%= tipo.descricao %>
-                    </option>
-                <% }) %>
-            </select>
+            <label>Descrição:</label>
+            <textarea name="descricao" rows="4" required><%= tipquarto.descricao %></textarea>
 
             <button class="btn" type="submit">Salvar Alterações</button>
         </form>
-        <a class="voltar" href="/quarto/lst">← Voltar para lista</a>
+        <a class="voltar" href="/tipquarto/lst">← Voltar para lista</a>
         <a class="voltar" href="/">← Voltar a tela inicial</a>
     </div>
 </body>
