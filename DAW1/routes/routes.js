@@ -63,7 +63,7 @@ import {
 
 // Página inicial
 router.get('/', (req, res) => {
-    res.render('telainicial');
+    res.render('telaInicial');
 });
 
 //Cliente
@@ -72,7 +72,7 @@ router.post('/cliente/add', addCliente);
 router.get('/cliente/lst', listarCliente);
 router.post('/cliente/lst', filtrarCliente);
 router.get('/cliente/edit/:id', abreEditCliente);
-router.post('/cliente/update/:id', editCliente);
+router.post('/cliente/edit/:id', editCliente);
 router.post('/cliente/delete/:id', deletarCliente);
 
 //Contrato
